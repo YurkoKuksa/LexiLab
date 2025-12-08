@@ -246,7 +246,7 @@ const WordLearningApp = () => {
     <div className="min-h-screen bg-gradient-to-br from-gray-100 to-slate-200 flex items-center justify-center p-4">
       <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full border border-gray-300">
         <div className="flex justify-between items-center mb-6">
-          <h1 className="text-2xl font-bold text-slate-800">Вівчення слів</h1>
+          <h1 className="text-2xl font-bold text-slate-800">Вивчення слів</h1>
           <div className="flex items-center gap-4">
             <div className="text-sm text-slate-600">
               Залишилось:{' '}
