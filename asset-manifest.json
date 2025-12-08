@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/LexiLab/static/css/main.98ea0bc4.css",
+    "main.js": "/LexiLab/static/js/main.ba7c91fd.js",
+    "index.html": "/LexiLab/index.html",
+    "main.98ea0bc4.css.map": "/LexiLab/static/css/main.98ea0bc4.css.map",
+    "main.ba7c91fd.js.map": "/LexiLab/static/js/main.ba7c91fd.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.98ea0bc4.css",
+    "static/js/main.ba7c91fd.js"
+  ]
+}
