@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Clock, CheckCircle, XCircle, Trophy } from 'lucide-react';
 import { useGoogleSheetWords } from '../../API/useGoogleSheetWords';
 
 const WordLearningApp = () => {
   const { words: apiWords, loading } = useGoogleSheetWords();
 
-  const [words, setWords] = useState([]);
+  const [, setWords] = useState([]);
   const [currentWord, setCurrentWord] = useState(null);
   const [userInput, setUserInput] = useState('');
   const [timeLeft, setTimeLeft] = useState(10);
@@ -38,6 +38,36 @@ const WordLearningApp = () => {
     }
   }, [learnedWords]);
 
+  const pickRandomWord = useCallback(wordQueue => {
+    if (wordQueue.length === 0) {
+      setCurrentWord(null);
+      return;
+    }
+
+    const randomIndex = Math.floor(Math.random() * wordQueue.length);
+    const word = wordQueue[randomIndex];
+    setCurrentWord(word);
+    setTimeLeft(10);
+    setUserInput('');
+    setFeedback(null);
+
+    setTimeout(() => {
+      inputRef.current?.focus();
+    }, 100);
+  }, []);
+
+  // ✅ ВИПРАВЛЕНО: handleTimeout тепер useCallback
+  const handleTimeout = useCallback(() => {
+    setFeedback({ type: 'timeout', message: 'Час вийшов!' });
+
+    setTimeout(() => {
+      setQueue(prevQueue => {
+        pickRandomWord(prevQueue);
+        return prevQueue;
+      });
+    }, 1500);
+  }, [pickRandomWord]);
+
   // ✅ ЗМІНЕНО: Ініціалізація слів з API + фільтрація вивчених
   useEffect(() => {
     if (apiWords && apiWords.length > 0) {
@@ -63,9 +93,9 @@ const WordLearningApp = () => {
         pickRandomWord(unlearnedWords);
       }
     }
-  }, [apiWords, learnedWords]);
+  }, [apiWords, learnedWords, pickRandomWord]);
 
-  // Таймер
+  // ✅ ВИПРАВЛЕНО: Додано handleTimeout в залежності
   useEffect(() => {
     if (currentWord && timeLeft > 0 && !feedback) {
       timerRef.current = setTimeout(() => {
@@ -76,34 +106,7 @@ const WordLearningApp = () => {
     }
 
     return () => clearTimeout(timerRef.current);
-  }, [timeLeft, currentWord, feedback]);
-
-  const pickRandomWord = wordQueue => {
-    if (wordQueue.length === 0) {
-      setCurrentWord(null);
-      return;
-    }
-
-    const randomIndex = Math.floor(Math.random() * wordQueue.length);
-    const word = wordQueue[randomIndex];
-    setCurrentWord(word);
-    setTimeLeft(10);
-    setUserInput('');
-    setFeedback(null);
-
-    setTimeout(() => {
-      inputRef.current?.focus();
-    }, 100);
-  };
-
-  const handleTimeout = () => {
-    setFeedback({ type: 'timeout', message: 'Час вийшов!' });
-
-    setTimeout(() => {
-      const newQueue = [...queue];
-      pickRandomWord(newQueue);
-    }, 1500);
-  };
+  }, [timeLeft, currentWord, feedback, handleTimeout]);
 
   const handleSubmit = () => {
     if (!userInput.trim() || !currentWord) return;

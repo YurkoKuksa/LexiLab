@@ -7,7 +7,7 @@ import { theme } from './styles/theme';
 import { GlobalStyle } from 'styles/GlobalStyle';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <BrowserRouter basename="/react-homework-template">
+  <BrowserRouter basename="/LexiLab">
     <ThemeProvider theme={theme}>
       <App />
       <GlobalStyle />

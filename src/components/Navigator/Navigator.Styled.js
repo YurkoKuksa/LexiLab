@@ -1,4 +1,20 @@
-import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
+import styled, { keyframes } from 'styled-components';
+
+const float = keyframes`
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+`;
+
+export const AnimatedNavLink = styled(NavLink)`
+  display: inline-block;
+  transition: transform 0.3s;
+  animation: ${float} 3s ease-in-out infinite 1.4s;
+
+  &:hover {
+    transform: translateY(1px);
+  }
+`;
 
 export const Navig = styled.nav`
   width: 100%;
@@ -42,7 +58,7 @@ export const NavLinks = styled.ul`
 
 export const NavItem = styled.li``;
 
-export const NavLink = styled.a`
+export const StyledNavLink = styled.a`
   text-decoration: none;
   font-size: 16px;
   font-weight: 500;
