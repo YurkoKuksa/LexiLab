@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/LexiLab/static/css/main.98ea0bc4.css",
-    "main.js": "/LexiLab/static/js/main.3d0dac24.js",
+    "main.css": "/LexiLab/static/css/main.e51470e3.css",
+    "main.js": "/LexiLab/static/js/main.eb93f3f7.js",
     "index.html": "/LexiLab/index.html",
-    "main.98ea0bc4.css.map": "/LexiLab/static/css/main.98ea0bc4.css.map",
-    "main.3d0dac24.js.map": "/LexiLab/static/js/main.3d0dac24.js.map"
+    "main.e51470e3.css.map": "/LexiLab/static/css/main.e51470e3.css.map",
+    "main.eb93f3f7.js.map": "/LexiLab/static/js/main.eb93f3f7.js.map"
   },
   "entrypoints": [
-    "static/css/main.98ea0bc4.css",
-    "static/js/main.3d0dac24.js"
+    "static/css/main.e51470e3.css",
+    "static/js/main.eb93f3f7.js"
   ]
 }
