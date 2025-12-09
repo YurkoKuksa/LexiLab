@@ -83,3 +83,41 @@ export function useGoogleSheetWords() {
 
 //   return { words, loading };
 // }
+
+// import { useState, useEffect } from 'react';
+
+// export function useGoogleSheetWords(sheetId, sheetName) {
+//   const [words, setWords] = useState([]);
+//   const [loading, setLoading] = useState(true);
+
+//   useEffect(() => {
+//     if (!sheetId || !sheetName) return;
+
+//     async function loadWords() {
+//       try {
+//         const res = await fetch(
+//           `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&sheet=${sheetName}`
+//         );
+//         const text = await res.text();
+//         const json = JSON.parse(
+//           text.match(/google\.visualization\.Query\.setResponse\((.*)\);/)[1]
+//         );
+
+//         const rows = json.table.rows.map(row => ({
+//           word: row.c[1]?.v || '',
+//           translation: row.c[3]?.v || '',
+//         }));
+
+//         setWords(rows);
+//       } catch (err) {
+//         console.error(err);
+//       } finally {
+//         setLoading(false);
+//       }
+//     }
+
+//     loadWords();
+//   }, [sheetId, sheetName]);
+
+//   return { words, loading };
+// }

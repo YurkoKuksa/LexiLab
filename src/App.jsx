@@ -5,17 +5,20 @@ import Layout from './components/Layout/Layout';
 import Navigator from 'pages/NavigatorPage/NavigatorPage';
 
 import Learn from 'pages/LearnWriting/LearnWriting';
+import Menu from 'pages/MenuPage/MenuPage';
+import Birds from 'pages/AnimalsTopics/BirdsPage/BirdsPage';
+import Wild from 'pages/AnimalsTopics/WildPage/WildPage';
 
 export const App = () => {
   return (
     <>
       <Routes>
         <Route path="/" element={<Layout />}>
-          {/* <Route index element={<Home />} /> */}
           <Route index element={<Navigator />} />
-          <Route path="/learn" element={<Learn />} />
-
-          <Route></Route>
+          <Route path="learn" element={<Learn />} />
+          <Route path="menu" element={<Menu />} />
+          <Route path="birds" element={<Birds />} />
+          <Route path="wild" element={<Wild />} />
         </Route>
       </Routes>
     </>
