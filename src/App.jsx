@@ -4,7 +4,7 @@ import Layout from './components/Layout/Layout';
 
 import Navigator from 'pages/NavigatorPage/NavigatorPage';
 
-import LearnNL from 'pages/NLcapitals/CapitalsNL';
+import LearnNL from 'pages/NL/NLcapitals/CapitalsNL';
 import Menu from 'pages/MenuPage/MenuPage';
 import Birds from 'pages/AnimalsTopics/BirdsPage/BirdsPage';
 import Wild from 'pages/AnimalsTopics/WildPage/WildPage';

@@ -1,4 +1,4 @@
-import Learn from '../../components/Dutch/DutchCapitals';
+import Learn from '../../../components/NLcomponents/Dutch/ProvincieCapitals';
 
 const CapitalsNL = () => {
   return (
