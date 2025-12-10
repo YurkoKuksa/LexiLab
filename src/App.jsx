@@ -4,7 +4,7 @@ import Layout from './components/Layout/Layout';
 
 import Navigator from 'pages/NavigatorPage/NavigatorPage';
 
-import Learn from 'pages/LearnWriting/LearnWriting';
+import LearnNL from 'pages/NLcapitals/CapitalsNL';
 import Menu from 'pages/MenuPage/MenuPage';
 import Birds from 'pages/AnimalsTopics/BirdsPage/BirdsPage';
 import Wild from 'pages/AnimalsTopics/WildPage/WildPage';
@@ -15,7 +15,7 @@ export const App = () => {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Navigator />} />
-          <Route path="learn" element={<Learn />} />
+          <Route path="nl" element={<LearnNL />} />
           <Route path="menu" element={<Menu />} />
           <Route path="birds" element={<Birds />} />
           <Route path="wild" element={<Wild />} />

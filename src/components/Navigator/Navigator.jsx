@@ -23,14 +23,14 @@ const Navigator = () => {
             </li>
             <li className="group">
               <AnimatedNavLink
-                to="learn"
+                to="nl"
                 className="block px-6 py-3 rounded-lg transition-all duration-300 ease-in-out
                  hover:translate-x-2 hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-500
                  hover:shadow-lg hover:scale-105
                  animate-[float_3s_ease-in-out_infinite_0.2s]"
               >
                 <span className="relative inline-block transition-transform duration-300 group-hover:translate-x-1">
-                  Learn Writing
+                  Dutch Learning
                 </span>
               </AnimatedNavLink>
             </li>

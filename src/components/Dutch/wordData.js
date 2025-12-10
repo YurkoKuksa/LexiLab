@@ -1,4 +1,4 @@
-import EnglLearnWriting from './EnglLearnWriting.jsx';
+import EnglLearnWriting from './DutchCapitals.jsx';
 export const wordData = [
   { word: 'cat', translation: 'кіт' },
   { word: 'dog', translation: 'собака' },

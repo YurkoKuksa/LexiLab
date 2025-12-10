@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Clock, CheckCircle, XCircle, Trophy } from 'lucide-react';
 import { useGoogleSheetWords } from '../../API/useGoogleSheetWords';
 
-const WordLearningApp = () => {
+const DutchCapitals = () => {
   const { words: apiWords, loading } = useGoogleSheetWords();
 
   const [, setWords] = useState([]);
@@ -344,4 +344,4 @@ const WordLearningApp = () => {
   );
 };
 
-export default WordLearningApp;
+export default DutchCapitals;
