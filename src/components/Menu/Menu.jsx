@@ -14,6 +14,12 @@ import {
 } from './MenuStyled';
 
 const Menu = () => {
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+    });
+  };
+
   // Конфігурація меню по секціях
   const menuSections = [
     // ✅ СЕКЦІЯ 1: Тварини
@@ -189,6 +195,7 @@ const Menu = () => {
                         to={item.to}
                         $variant={item.variant}
                         $delay={item.delay}
+                        onClick={scrollToTop}
                       >
                         <MenuText>{item.label}</MenuText>
                       </AnimatedNavLink>

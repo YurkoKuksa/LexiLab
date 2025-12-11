@@ -7,7 +7,7 @@ import {
 } from './MenuPageStyled';
 import React, { useState, useEffect, useCallback } from 'react';
 
-// ✅ Винесено за межі компонента
+//  Винесено за межі компонента
 const phrases = [
   'Expand your vocabulary with Lexi Yurko',
   'Discover better words',
@@ -56,9 +56,20 @@ const MenuPage = () => {
     }
   }, [currentIndex, currentPhrase, getRandomPhrase]);
 
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <PageWrapper>
-      <TextContainer>
+      <TextContainer className={isScrolled ? 'scrolled' : ''}>
         <AnimatedText>
           {displayedText}
           <Cursor>|</Cursor>

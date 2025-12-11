@@ -10,7 +10,6 @@ const float = keyframes`
   }
 `;
 
-// ✅ ОНОВЛЕНО: Адаптивний головний контейнер
 export const MenuContainer = styled.div`
   display: grid;
   gap: 1.5rem;
@@ -46,7 +45,6 @@ export const MenuContainer = styled.div`
   }
 `;
 
-// ✅ ОНОВЛЕНО: Адаптивна колонка (секція)
 export const MenuSection = styled.div`
   background: white;
   border-radius: 1rem;
@@ -65,7 +63,6 @@ export const MenuSection = styled.div`
   }
 `;
 
-// ✅ ОНОВЛЕНО: Адаптивний заголовок секції
 export const SectionTitle = styled.h2`
   font-size: 1.2rem;
   font-weight: 700;
@@ -113,7 +110,6 @@ export const Nav = styled.nav`
   /* Стилі nav */
 `;
 
-// ✅ ОНОВЛЕНО: Адаптивний список
 export const MenuList = styled.ul`
   display: flex;
   flex-direction: column;
@@ -132,7 +128,6 @@ export const MenuItem = styled.li`
   /* Базові стилі */
 `;
 
-// ✅ ОНОВЛЕНО: Адаптивний NavLink
 export const AnimatedNavLink = styled(NavLink)`
   display: block;
   padding: 0.625rem 0.875rem;
@@ -221,7 +216,6 @@ export const AnimatedNavLink = styled(NavLink)`
   }
 `;
 
-// ✅ ОНОВЛЕНО: Адаптивний текст
 export const MenuText = styled.span`
   position: relative;
   display: inline-block;
@@ -249,7 +243,6 @@ export const MenuText = styled.span`
   }
 `;
 
-// ✅ ОНОВЛЕНО: Адаптивний Outlet контейнер
 export const OutletContainer = styled.div`
   margin-top: 1.5rem;
   padding: 0 1rem;
@@ -263,7 +256,6 @@ export const OutletContainer = styled.div`
   }
 `;
 
-// ✅ ОНОВЛЕНО: Адаптивний Placeholder
 export const PlaceholderSection = styled(MenuSection)`
   background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
   border: 2px dashed #d1d5db;
