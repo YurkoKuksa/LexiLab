@@ -12,6 +12,18 @@ import Domestic from 'pages/AnimalsTopics/DomesticPage/DomesticPage';
 import TestPage from 'pages/testPage/testPage';
 import SeaAnim from 'pages/AnimalsTopics/SeaAnimalsPage/SeaAnimalsPage';
 
+import Parts from 'pages/AnimalsTopics/AnimalPartsPage/AnimalPartsPage';
+import Sounds from 'pages/AnimalsTopics/AnimalSoundsPage/AnimalSoundsPage';
+import Words from 'pages/AnimalsTopics/AnimalsWords/AnimalsWords';
+import Dinosaurs from 'pages/AnimalsTopics/DinosaursPage/DinosaursPage';
+import Fish from 'pages/AnimalsTopics/FishPage/FishPage';
+import Group from 'pages/AnimalsTopics/GroupsAnimalsPage/GroupsAnimalsPage';
+import Insects from 'pages/AnimalsTopics/InsectsPage/InsectsPage';
+import Micro from 'pages/AnimalsTopics/MicroorganismsPage/MicroorganismsPage';
+import Myth from 'pages/AnimalsTopics/MythicalCreaturesPage/MythicalCreaturesPage';
+import Pets from 'pages/AnimalsTopics/PetsPage/PetsPage';
+import Cats from 'pages/AnimalsTopics/WildCatsPage/WildCatsPage';
+
 export const App = () => {
   return (
     <>
@@ -25,6 +37,18 @@ export const App = () => {
           <Route path="wild" element={<Wild />} />
           <Route path="domestic" element={<Domestic />} />
           <Route path="seaanim" element={<SeaAnim />} />
+
+          <Route path="parts" element={<Parts />} />
+          <Route path="sounds" element={<Sounds />} />
+          <Route path="words" element={<Words />} />
+          <Route path="dinos" element={<Dinosaurs />} />
+          <Route path="fish" element={<Fish />} />
+          <Route path="group" element={<Group />} />
+          <Route path="insects" element={<Insects />} />
+          <Route path="micro" element={<Micro />} />
+          <Route path="myth" element={<Myth />} />
+          <Route path="pets" element={<Pets />} />
+          <Route path="cats" element={<Cats />} />
         </Route>
       </Routes>
     </>
