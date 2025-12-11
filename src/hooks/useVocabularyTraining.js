@@ -10,6 +10,8 @@ export function useVocabularyTrainer(sheetId, sheetName, options = {}) {
     wrongAnswerDelay = 2000,
     reversed = false,
     isPaused = false, // ✅ НОВИЙ ПАРАМЕТР
+    from = 'A', // Мова за замовчуванням
+    to = 'B', // Мова за замовчуванням
   } = options;
 
   const {
@@ -27,7 +29,7 @@ export function useVocabularyTrainer(sheetId, sheetName, options = {}) {
   const timerRef = useRef(null);
   const inputRef = useRef(null);
 
-  const direction = reversed ? 'ukr-eng' : 'eng-ukr';
+  const direction = reversed ? `${to}-${from}` : `${from}-${to}`;
   const STORAGE_KEY = storageKey || `learnedWords_${sheetName}_${direction}`;
 
   useEffect(() => {

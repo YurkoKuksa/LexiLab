@@ -10,7 +10,7 @@ import {
 } from 'lucide-react';
 import { useVocabularyTrainer } from '../../hooks/useVocabularyTraining';
 
-const VocabularyTrainer = ({ sheetId, sheetName, name }) => {
+const VocabularyTrainer = ({ sheetId, sheetName, name, from, to }) => {
   // ✅ Використовуємо name для відображення
   const displayName = name || sheetName;
 
@@ -40,24 +40,25 @@ const VocabularyTrainer = ({ sheetId, sheetName, name }) => {
     handleSubmit,
     handleResetProgress,
     direction,
-    // setTimeLeft,
   } = useVocabularyTrainer(sheetId, sheetName, {
     reversed: isReversed,
-    isPaused, // ✅ Передаємо стан паузи
+    isPaused,
+    from,
+    to,
   });
 
-  // ✅ НОВИЙ: Зберігаємо вибір напрямку
+  //  Зберігаємо вибір напрямку
   useEffect(() => {
     localStorage.setItem(`direction_${sheetName}`, isReversed.toString());
   }, [isReversed, sheetName]);
 
-  // ✅ ВИПРАВЛЕНО: Перемикання без підтвердження
+  //  Перемикання без підтвердження
   const handleToggleDirection = () => {
     setIsReversed(!isReversed);
     setComponentKey(prev => prev + 1);
   };
 
-  // ✅ НОВИЙ: Перемикання паузи
+  //  Перемикання паузи
   const handleTogglePause = () => {
     setIsPaused(!isPaused);
   };
@@ -111,7 +112,7 @@ const VocabularyTrainer = ({ sheetId, sheetName, name }) => {
             Ви вивчили всі слова з теми "{displayName}"!
           </p>
           <p className="text-sm text-slate-500 mb-4">
-            Напрямок: {direction === 'eng-ukr' ? 'ENG → УКР' : 'УКР → ENG'}
+            Напрямок: {direction.replace('-', ' → ')}
           </p>
           <div className="text-left bg-slate-50 rounded-lg p-4 border border-slate-200 max-h-96 overflow-y-auto">
             {learnedWords.map((word, idx) => (
@@ -148,13 +149,13 @@ const VocabularyTrainer = ({ sheetId, sheetName, name }) => {
       className="min-h-screen bg-gradient-to-br from-gray-100 to-slate-200 flex items-center justify-center p-4"
     >
       <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full border border-gray-300">
-        {/* ✅ ПОКРАЩЕНО: Заголовок з кнопкою паузи */}
+        {/* Заголовок з кнопкою паузи */}
         <div className="mb-6">
           <div className="flex items-center justify-between mb-3">
             <h1 className="text-2xl font-bold text-slate-800">
               Вивчення: {displayName}
             </h1>
-            {/* ✅ НОВИЙ: Кнопка паузи справа від заголовка */}
+            {/*  Кнопка паузи справа від заголовка */}
             <button
               onClick={handleTogglePause}
               className="p-2.5 rounded-lg bg-slate-100 hover:bg-slate-200 transition-colors border border-slate-300 group"
@@ -168,7 +169,7 @@ const VocabularyTrainer = ({ sheetId, sheetName, name }) => {
             </button>
           </div>
 
-          {/* ✅ ПОКРАЩЕНО: Статистика в окремому рядку */}
+          {/* Статистика в окремому рядку */}
           <div className="flex items-center justify-between text-sm">
             <div className="flex items-center gap-4">
               <div className="text-slate-600">
@@ -194,7 +195,7 @@ const VocabularyTrainer = ({ sheetId, sheetName, name }) => {
           </div>
         </div>
 
-        {/* ✅ ПОКРАЩЕНО: Інтуїтивний перемикач напрямку */}
+        {/*  Інтуїтивний перемикач напрямку */}
         <button
           onClick={handleToggleDirection}
           className="w-full mb-4 flex items-center justify-between bg-slate-50 p-3 rounded-lg border border-slate-200 hover:bg-slate-100 hover:border-slate-300 transition-all cursor-pointer group"
@@ -202,7 +203,7 @@ const VocabularyTrainer = ({ sheetId, sheetName, name }) => {
           <div className="flex items-center gap-2">
             <RefreshCw className="w-4 h-4 text-slate-600 group-hover:rotate-180 transition-transform duration-300" />
             <span className="text-sm font-medium text-slate-700">
-              Напрямок: {direction === 'eng-ukr' ? 'ENG → УКР' : 'УКР → ENG'}
+              Напрямок: {direction.replace('-', ' → ')}
             </span>
           </div>
           <span className="text-xs text-slate-500 group-hover:text-slate-700 transition-colors">
@@ -210,7 +211,7 @@ const VocabularyTrainer = ({ sheetId, sheetName, name }) => {
           </span>
         </button>
 
-        {/* ✅ ОНОВЛЕНО: Індикатор паузи з підказкою */}
+        {/*  Індикатор паузи з підказкою */}
         {isPaused && (
           <div className="mb-4 p-3 bg-orange-50 border border-orange-200 rounded-lg flex items-center gap-2">
             <Pause className="w-4 h-4 text-orange-600" />
@@ -257,7 +258,7 @@ const VocabularyTrainer = ({ sheetId, sheetName, name }) => {
                 value={userInput}
                 onChange={e => setUserInput(e.target.value)}
                 onKeyDown={e => {
-                  // ✅ ВИПРАВЛЕНО: Блокуємо Enter на паузі
+                  //  Блокуємо Enter на паузі
                   if (
                     e.key === 'Enter' &&
                     !feedback &&
@@ -272,12 +273,12 @@ const VocabularyTrainer = ({ sheetId, sheetName, name }) => {
                     ? 'Натисніть Play для продовження...'
                     : 'Введіть переклад...'
                 }
-                disabled={!!feedback || isPaused} // ✅ ВИПРАВЛЕНО: Додано isPaused
+                disabled={!!feedback || isPaused}
                 className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200 text-lg disabled:bg-gray-100 transition bg-gray-50"
               />
               <button
                 onClick={handleSubmit}
-                disabled={!!feedback || !userInput.trim() || isPaused} // ✅ ВИПРАВЛЕНО: Додано isPaused
+                disabled={!!feedback || !userInput.trim() || isPaused}
                 className="w-full mt-3 bg-gradient-to-r from-slate-600 to-gray-600 text-white py-3 rounded-lg font-semibold hover:from-slate-700 hover:to-gray-700 active:from-slate-800 active:to-gray-800 transition shadow-lg disabled:from-gray-300 disabled:to-gray-300 disabled:cursor-not-allowed disabled:shadow-none"
               >
                 Перевірити

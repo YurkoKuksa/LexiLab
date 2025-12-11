@@ -1,71 +1,170 @@
-import { AnimatedNavLink } from 'components/Navigator/Navigator.Styled';
 import { Outlet } from 'react-router-dom';
+import {
+  MenuContainer,
+  MenuSection,
+  SectionTitle,
+  Nav,
+  MenuList,
+  MenuItem,
+  AnimatedNavLink,
+  MenuText,
+  OutletContainer,
+  PlaceholderSection,
+  PlaceholderText,
+} from './MenuStyled';
 
 const Menu = () => {
+  // Конфігурація меню по секціях
+  const menuSections = [
+    // ✅ СЕКЦІЯ 1: Тварини
+    {
+      title: 'Тварини',
+      items: [
+        { to: '/birds', label: 'Birds', variant: 'birds', delay: '0s' },
+        { to: '/wild', label: 'Wild Animals', variant: 'wild', delay: '0.2s' },
+        {
+          to: '/domestic',
+          label: 'Domestic Animals',
+          variant: 'domestic',
+          delay: '0.4s',
+        },
+        // Додайте сюди нові пункти:
+        // { to: '/farm', label: 'Farm Animals', variant: 'domestic', delay: '0.3s' },
+      ],
+    },
+
+    // ✅ СЕКЦІЯ 2: Водний світ
+    {
+      title: 'upcoming topic',
+      items: [
+        // { to: '/fish', label: 'Fish', variant: 'fish', delay: '0s' },
+        // Додайте сюди нові пункти:
+        // { to: '/sea-creatures', label: 'Sea Creatures', variant: 'fish', delay: '0.1s' },
+        // { to: '/ocean-life', label: 'Ocean Life', variant: 'fish', delay: '0.2s' },
+      ],
+      placeholder: 'Скоро буде доступно...',
+    },
+
+    // ✅ СЕКЦІЯ 3: Комахи і плазуни
+    // {
+    //   title: 'Комахи і плазуни',
+    //   items: [
+    //     // { to: '/insects', label: 'Insects', variant: 'insects', delay: '0s' },
+    //     // Додайте сюди нові пункти:
+    //     // { to: '/reptiles', label: 'Reptiles', variant: 'reptiles', delay: '0.1s' },
+    //     // { to: '/amphibians', label: 'Amphibians', variant: 'reptiles', delay: '0.2s' },
+    //   ],
+    //   placeholder: 'Скоро буде доступно...',
+    // },
+
+    // ✅ СЕКЦІЯ 4: Рослини і природа
+    // {
+    //   title: 'upcoming topic',
+    //   items: [
+    //     // Додайте сюди нові пункти:
+    //     // { to: '/flowers', label: 'Flowers', variant: 'birds', delay: '0s' },
+    //     // { to: '/trees', label: 'Trees', variant: 'wild', delay: '0.1s' },
+    //     // { to: '/plants', label: 'Plants', variant: 'insects', delay: '0.2s' },
+    //   ],
+    //   placeholder: 'Скоро буде доступно...',
+    // },
+
+    // ✅ СЕКЦІЯ 5: Їжа і напої
+    // {
+    //   title: 'upcoming topic',
+    //   items: [
+    //     // Додайте сюди нові пункти:
+    //     // { to: '/fruits', label: 'Fruits', variant: 'fish', delay: '0s' },
+    //     // { to: '/vegetables', label: 'Vegetables', variant: 'insects', delay: '0.1s' },
+    //     // { to: '/drinks', label: 'Drinks', variant: 'birds', delay: '0.2s' },
+    //   ],
+    //   placeholder: 'Скоро буде доступно...',
+    // },
+
+    // ✅ СЕКЦІЯ 6: Транспорт
+    // {
+    //   title: 'upcoming topic',
+    //   items: [
+    //     // { to: '/cars', label: 'Cars', variant: 'fish', delay: '0s' },
+    //     // { to: '/planes', label: 'Planes', variant: 'birds', delay: '0.1s' },
+    //     // { to: '/ships', label: 'Ships', variant: 'wild', delay: '0.2s' },
+    //   ],
+    //   placeholder: 'Скоро буде доступно...',
+    // },
+
+    // ✅ СЕКЦІЯ 7: Транспорт
+    // {
+    //   title: 'upcoming topic',
+    //   items: [
+    //     // { to: '/cars', label: 'Cars', variant: 'fish', delay: '0s' },
+    //     // { to: '/planes', label: 'Planes', variant: 'birds', delay: '0.2s' },
+    //     // { to: '/ships', label: 'Ships', variant: 'wild', delay: '0.4s' },
+    //   ],
+    //   placeholder: 'Скоро буде доступно...',
+    // },
+
+    // ✅ СЕКЦІЯ 8: Транспорт
+    // {
+    //   title: 'upcoming topic',
+    //   items: [
+    //     // { to: '/cars', label: 'Cars', variant: 'fish', delay: '0s' },
+    //     // { to: '/planes', label: 'Planes', variant: 'birds', delay: '0.2s' },
+    //     // { to: '/ships', label: 'Ships', variant: 'wild', delay: '0.4s' },
+    //   ],
+    //   placeholder: 'Скоро буде доступно...',
+    // },
+  ];
+
   return (
-    <div>
-      <nav role="navigation">
-        <ul className="space-y-2">
-          <li className="group">
-            <AnimatedNavLink
-              to="/birds"
-              className="block px-6 py-3 rounded-lg transition-all duration-300 ease-in-out
-                 hover:translate-x-2 hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-500
-                 hover:shadow-lg hover:scale-105
-                 animate-[float_3s_ease-in-out_infinite]"
-            >
-              <span
-                className="
-    relative inline-block 
-    transition-all duration-300 
-    font-semibold tracking-tight
+    <>
+      <MenuContainer>
+        {menuSections.map((section, index) => {
+          // Якщо секція порожня або має placeholder
+          if (!section.items || section.items.length === 0) {
+            return (
+              <PlaceholderSection key={`section-${index}`}>
+                <div>
+                  <SectionTitle
+                    style={{ borderBottom: 'none', marginBottom: '0.5rem' }}
+                  >
+                    {section.title}
+                  </SectionTitle>
+                  <PlaceholderText>
+                    {section.placeholder || 'Додайте нові категорії тут...'}
+                  </PlaceholderText>
+                </div>
+              </PlaceholderSection>
+            );
+          }
 
-    /* звичайний стан */
-    text-transparent bg-clip-text
-    bg-gradient-to-r from-gray-700 via-gray-600 to-gray-800
-    drop-shadow-[0_1px_1px_rgba(0,0,0,0.32)]
+          // Звичайна секція з меню
+          return (
+            <MenuSection key={`section-${index}`}>
+              <SectionTitle>{section.title}</SectionTitle>
+              <Nav role="navigation">
+                <MenuList>
+                  {section.items.map(item => (
+                    <MenuItem key={item.to}>
+                      <AnimatedNavLink
+                        to={item.to}
+                        $variant={item.variant}
+                        $delay={item.delay}
+                      >
+                        <MenuText>{item.label}</MenuText>
+                      </AnimatedNavLink>
+                    </MenuItem>
+                  ))}
+                </MenuList>
+              </Nav>
+            </MenuSection>
+          );
+        })}
+      </MenuContainer>
 
-    /* hover: прибираємо градієнт повністю */
-    group-hover:text-white group-hover:bg-none group-hover:drop-shadow-[0_0px_1px_rgba(0,0,0,0.45)]
-  "
-              >
-                Birds
-              </span>
-            </AnimatedNavLink>
-          </li>
-          <li className="group">
-            <AnimatedNavLink
-              to="/wild"
-              className="block px-6 py-3 rounded-lg transition-all duration-300 ease-in-out
-                 hover:translate-x-2 hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-500
-                 hover:shadow-lg hover:scale-105
-                 animate-[float_3s_ease-in-out_infinite_0.2s]"
-            >
-              <span
-                className="
-    relative inline-block 
-    transition-all duration-300 
-    font-semibold tracking-tight
-
-    /* звичайний стан */
-    text-transparent bg-clip-text
-    bg-gradient-to-r from-gray-700 via-gray-600 to-gray-800
-    drop-shadow-[0_1px_1px_rgba(0,0,0,0.32)]
-
-    /* hover: прибираємо градієнт повністю */
-    group-hover:text-white group-hover:bg-none group-hover:drop-shadow-[0_0px_1px_rgba(0,0,0,0.45)]
-  "
-              >
-                Wild Animals
-              </span>
-            </AnimatedNavLink>
-          </li>
-        </ul>
-      </nav>
-      <div className="mt-6">
+      <OutletContainer>
         <Outlet />
-      </div>
-    </div>
+      </OutletContainer>
+    </>
   );
 };
 

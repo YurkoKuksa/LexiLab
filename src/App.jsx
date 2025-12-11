@@ -8,6 +8,7 @@ import LearnNL from 'pages/NL/NLcapitals/CapitalsNL';
 import Menu from 'pages/MenuPage/MenuPage';
 import Birds from 'pages/AnimalsTopics/BirdsPage/BirdsPage';
 import Wild from 'pages/AnimalsTopics/WildPage/WildPage';
+import Domestic from 'pages/AnimalsTopics/DomesticPage/DomesticPage';
 
 export const App = () => {
   return (
@@ -19,6 +20,7 @@ export const App = () => {
           <Route path="menu" element={<Menu />} />
           <Route path="birds" element={<Birds />} />
           <Route path="wild" element={<Wild />} />
+          <Route path="domestic" element={<Domestic />} />
         </Route>
       </Routes>
     </>

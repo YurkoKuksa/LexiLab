@@ -9,7 +9,7 @@ const float = keyframes`
 export const AnimatedNavLink = styled(NavLink)`
   display: inline-block;
   transition: transform 0.3s;
-  animation: ${float} 3s ease-in-out infinite 1.4s;
+  /* animation: ${float} 3s ease-in-out infinite 1.4s; */
 
   &:hover {
     transform: translateY(1px);

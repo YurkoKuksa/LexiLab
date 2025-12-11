@@ -1,12 +1,12 @@
 import VocabularyTrainer from '../../VocabularyTrainer/VocabularyTrainer';
 
-const Birds = () => {
+const Domestic = () => {
   return (
     <>
       <VocabularyTrainer
         sheetId="17BUm13x3abpJRjvjAtN8qwz9uE0k1KMPUZvS0_7yQFQ"
-        sheetName="Birdss"
-        name="Birds"
+        sheetName="Domestic"
+        name="Domestic"
         from="ENG"
         to="УКР"
       />
@@ -14,4 +14,4 @@ const Birds = () => {
   );
 };
 
-export default Birds;
+export default Domestic;
