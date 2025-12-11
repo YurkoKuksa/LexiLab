@@ -11,19 +11,15 @@ import {
 import { useVocabularyTrainer } from '../../hooks/useVocabularyTraining';
 
 const VocabularyTrainer = ({ sheetId, sheetName, name, from, to }) => {
-  // ✅ Використовуємо name для відображення
   const displayName = name || sheetName;
 
-  // ✅ ВИПРАВЛЕНО: Завантажуємо збережене значення при старті
   const [isReversed, setIsReversed] = useState(() => {
     const saved = localStorage.getItem(`direction_${sheetName}`);
     return saved === 'true';
   });
 
-  // ✅ НОВИЙ: Стан паузи
   const [isPaused, setIsPaused] = useState(false);
 
-  // ✅ НОВИЙ: Ключ для форсування перемонтування компонента
   const [componentKey, setComponentKey] = useState(0);
 
   const {
@@ -47,18 +43,15 @@ const VocabularyTrainer = ({ sheetId, sheetName, name, from, to }) => {
     to,
   });
 
-  //  Зберігаємо вибір напрямку
   useEffect(() => {
     localStorage.setItem(`direction_${sheetName}`, isReversed.toString());
   }, [isReversed, sheetName]);
 
-  //  Перемикання без підтвердження
   const handleToggleDirection = () => {
     setIsReversed(!isReversed);
     setComponentKey(prev => prev + 1);
   };
 
-  //  Перемикання паузи
   const handleTogglePause = () => {
     setIsPaused(!isPaused);
   };
@@ -150,14 +143,13 @@ const VocabularyTrainer = ({ sheetId, sheetName, name, from, to }) => {
              flex items-start justify-center pt-10 p-4"
     >
       <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full border border-gray-300">
-        {/* Заголовок з кнопкою паузи */}
         <div className="mb-6">
           <div className="flex items-center justify-between mb-3">
             <h1 className="text-2xl font-bold text-slate-800">
               {/* Вивчення: */}
               {displayName}
             </h1>
-            {/*  Кнопка паузи справа від заголовка */}
+
             <button
               onClick={handleTogglePause}
               className="p-2.5 rounded-lg bg-slate-100 hover:bg-slate-200 transition-colors border border-slate-300 group"
@@ -171,7 +163,6 @@ const VocabularyTrainer = ({ sheetId, sheetName, name, from, to }) => {
             </button>
           </div>
 
-          {/* Статистика в окремому рядку */}
           <div className="flex items-center justify-between text-sm">
             <div className="flex items-center gap-4">
               <div className="text-slate-600">
@@ -197,7 +188,6 @@ const VocabularyTrainer = ({ sheetId, sheetName, name, from, to }) => {
           </div>
         </div>
 
-        {/*  Інтуїтивний перемикач напрямку */}
         <button
           onClick={handleToggleDirection}
           className="w-full mb-4 flex items-center justify-between bg-slate-50 p-3 rounded-lg border border-slate-200 hover:bg-slate-100 hover:border-slate-300 transition-all cursor-pointer group"
@@ -205,7 +195,8 @@ const VocabularyTrainer = ({ sheetId, sheetName, name, from, to }) => {
           <div className="flex items-center gap-2">
             <RefreshCw className="w-4 h-4 text-slate-600 group-hover:rotate-180 transition-transform duration-300" />
             <span className="text-sm font-medium text-slate-700">
-              Напрямок: {direction.replace('-', ' → ')}
+              {/* Напрямок: */}
+              {direction.replace('-', ' → ')}
             </span>
           </div>
           <span className="text-xs text-slate-500 group-hover:text-slate-700 transition-colors">
@@ -213,7 +204,6 @@ const VocabularyTrainer = ({ sheetId, sheetName, name, from, to }) => {
           </span>
         </button>
 
-        {/*  Індикатор паузи з підказкою */}
         {isPaused && (
           <div className="mb-4 p-3 bg-orange-50 border border-orange-200 rounded-lg flex items-center gap-2">
             <Pause className="w-4 h-4 text-orange-600" />
@@ -260,7 +250,6 @@ const VocabularyTrainer = ({ sheetId, sheetName, name, from, to }) => {
                 value={userInput}
                 onChange={e => setUserInput(e.target.value)}
                 onKeyDown={e => {
-                  //  Блокуємо Enter на паузі
                   if (
                     e.key === 'Enter' &&
                     !feedback &&

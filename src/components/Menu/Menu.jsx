@@ -28,8 +28,13 @@ const Menu = () => {
           variant: 'domestic',
           delay: '0.4s',
         },
-        // Додайте сюди нові пункти:
-        // { to: '/farm', label: 'Farm Animals', variant: 'domestic', delay: '0.3s' },
+
+        {
+          to: '/seaanim',
+          label: 'Sea Animals',
+          variant: 'sea',
+          delay: '0.4s',
+        },
       ],
     },
 

@@ -9,9 +9,9 @@ export function useVocabularyTrainer(sheetId, sheetName, options = {}) {
     correctAnswerDelay = 1500,
     wrongAnswerDelay = 2000,
     reversed = false,
-    isPaused = false, // ✅ НОВИЙ ПАРАМЕТР
-    from = 'A', // Мова за замовчуванням
-    to = 'B', // Мова за замовчуванням
+    isPaused = false,
+    from = 'A',
+    to = 'B',
   } = options;
 
   const {
@@ -141,7 +141,6 @@ export function useVocabularyTrainer(sheetId, sheetName, options = {}) {
     }
   }, [apiWords, learnedWords, pickRandomWord, sheetName, direction]);
 
-  // ✅ ОНОВЛЕНО: Таймер з підтримкою паузи
   useEffect(() => {
     if (!currentWord || feedback || isPaused) {
       return;
@@ -173,12 +172,11 @@ export function useVocabularyTrainer(sheetId, sheetName, options = {}) {
 
       if (updatedWord.correctCount >= requiredCorrectAnswers) {
         setFeedback({ type: 'learned', message: 'Вивчено! 🎉' });
-        setLearnedWords(prev => [...prev, updatedWord]);
-
-        const newQueue = queue.filter(w => w.id !== currentWord.id);
-        setQueue(newQueue);
 
         setTimeout(() => {
+          setLearnedWords(prev => [...prev, updatedWord]);
+          const newQueue = queue.filter(w => w.id !== currentWord.id);
+          setQueue(newQueue);
           pickRandomWord(newQueue);
         }, correctAnswerDelay);
       } else {
@@ -245,7 +243,7 @@ export function useVocabularyTrainer(sheetId, sheetName, options = {}) {
     userInput,
     setUserInput,
     timeLeft,
-    setTimeLeft, // ✅ НОВИЙ: Експортуємо для можливості ручного керування
+    setTimeLeft,
     feedback,
     learnedWords,
     queue,

@@ -34,6 +34,19 @@ const Navigator = () => {
                 </span>
               </AnimatedNavLink>
             </li>
+            <li className="group">
+              <AnimatedNavLink
+                to="test"
+                className="block px-6 py-3 rounded-lg transition-all duration-300 ease-in-out
+                 hover:translate-x-2 hover:bg-gradient-to-r hover:from-pink-500 hover:to-red-500
+                 hover:shadow-lg hover:scale-105
+                 animate-[float_3s_ease-in-out_infinite_0.4s]"
+              >
+                <span className="relative inline-block transition-transform duration-300 group-hover:translate-x-1">
+                  Test Programm
+                </span>
+              </AnimatedNavLink>
+            </li>
           </ul>
         </NavWrapper>
       </Navig>

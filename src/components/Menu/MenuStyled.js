@@ -47,7 +47,6 @@ export const MenuSection = styled.div`
   }
 `;
 
-// ✅ ОНОВЛЕНИЙ: Заголовок секції з кращим виділенням
 export const SectionTitle = styled.h2`
   font-size: 1.4rem;
   font-weight: 700;
@@ -124,7 +123,7 @@ export const AnimatedNavLink = styled(NavLink)`
           return 'linear-gradient(to right, #a855f7, #ec4899)';
         case 'domestic':
           return 'linear-gradient(to right, #ec4899, #ef4444)';
-        case 'fish':
+        case 'seaanim':
           return 'linear-gradient(to right, #06b6d4, #3b82f6)';
         case 'insects':
           return 'linear-gradient(to right, #84cc16, #22c55e)';

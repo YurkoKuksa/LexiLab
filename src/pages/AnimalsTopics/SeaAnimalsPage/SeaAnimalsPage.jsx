@@ -1,17 +1,16 @@
 import PageHeader from '../../../components/PageHeader/PageHeader';
-import Domestic from '../../../components/Animals/Domestic/Domestic';
+import SeaAnimals from '../../../components/Animals/SeaAnimals/SeaAnimals';
 import { MainContainer, Content } from '../AnimalStyled';
 
-const DomesticPage = () => {
+const SeaAnimalsPage = () => {
   return (
     <MainContainer>
-      <PageHeader title="Domestic Animals" />
+      <PageHeader title="Sea Animals" />
 
       <Content>
-        <Domestic />
+        <SeaAnimals />
       </Content>
     </MainContainer>
   );
 };
-
-export default DomesticPage;
+export default SeaAnimalsPage;

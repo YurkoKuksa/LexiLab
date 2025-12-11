@@ -49,7 +49,6 @@ export function useGoogleSheetWords(sheetId, sheetName, reversed = false) {
 
         const rows = json.table.rows
           .map(row => {
-            // ✅ НОВИЙ ФУНКЦІОНАЛ: Змінюємо напрямок залежно від reversed
             const wordIndex = reversed ? 3 : 1;
             const translationIndex = reversed ? 1 : 3;
 
@@ -98,7 +97,7 @@ export function useGoogleSheetWords(sheetId, sheetName, reversed = false) {
       isSubscribed = false;
       abortController.abort();
     };
-  }, [sheetId, sheetName, reversed]); // ✅ Додаємо reversed в залежності
+  }, [sheetId, sheetName, reversed]);
 
   return { words, loading, error };
 }
