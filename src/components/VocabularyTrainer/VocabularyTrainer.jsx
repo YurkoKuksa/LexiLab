@@ -146,14 +146,16 @@ const VocabularyTrainer = ({ sheetId, sheetName, name, from, to }) => {
   return (
     <div
       key={componentKey}
-      className="min-h-screen bg-gradient-to-br from-gray-100 to-slate-200 flex items-center justify-center p-4"
+      className="min-h-screen bg-gradient-to-br from-gray-100 to-slate-200 
+             flex items-start justify-center pt-10 p-4"
     >
       <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full border border-gray-300">
         {/* Заголовок з кнопкою паузи */}
         <div className="mb-6">
           <div className="flex items-center justify-between mb-3">
             <h1 className="text-2xl font-bold text-slate-800">
-              Вивчення: {displayName}
+              {/* Вивчення: */}
+              {displayName}
             </h1>
             {/*  Кнопка паузи справа від заголовка */}
             <button
