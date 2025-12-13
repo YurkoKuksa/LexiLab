@@ -7,6 +7,7 @@ export const PageWrapper = styled.div`
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  /* outline: 2px dotted red; */
 `;
 
 export const TextContainer = styled.div`

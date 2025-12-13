@@ -30,50 +30,7 @@ export const HeaderFlex = styled.div`
   justify-content: space-between;
   position: relative;
   gap: 0.5rem;
-
-  /* На мобільних змінюємо layout */
-  /* @media (max-width: 639px) {
-    flex-direction: column;
-    gap: 0.75rem;
-  } */
 `;
-
-// export const BackButton = styled.button`
-//   display: flex;
-//   align-items: center;
-//   gap: 0.5rem;
-//   padding: 0.5rem 0.875rem;
-//   background: linear-gradient(to right, #475569, #6b7280);
-//   color: white;
-//   border-radius: 0.5rem;
-//   font-weight: 500;
-//   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-//   transition: all 0.2s;
-//   border: none;
-//   cursor: pointer;
-
-//   @media (min-width: 640px) {
-//     padding: 0.625rem 1rem;
-//   }
-
-//   &:hover {
-//     background: linear-gradient(to right, #334155, #4b5563);
-//     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
-//     transform: scale(1.05);
-//   }
-
-//   &:active {
-//     background: linear-gradient(to right, #1e293b, #374151);
-//   }
-
-//   span {
-//     font-size: 0.875rem;
-
-//     @media (min-width: 640px) {
-//       font-size: 1rem;
-//     }
-//   }
-// `;
 
 export const BackButton = styled.button`
   display: flex;
@@ -133,31 +90,6 @@ export const BackButton = styled.button`
     }
   }
 `;
-// ```
-
-// ---
-
-// ## 📱 Візуалізація:
-
-// ### **Mobile (<480px):**
-// ```
-// ┌──────┐
-// │  ←   │  (тільки іконка)
-// └──────┘
-// ```
-
-// ### **Mobile (480px+):**
-// ```
-// ┌──────────┐
-// │  ← Назад │
-// └──────────┘
-// ```
-
-// ### **Desktop:**
-// ```
-// ┌─────────────┐
-// │  ←  Назад   │
-// └─────────────┘
 
 export const ArrowIcon = styled(ArrowLeft)`
   width: 1rem;

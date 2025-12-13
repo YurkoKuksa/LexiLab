@@ -5,6 +5,8 @@ import { ArrowLeft } from 'lucide-react';
 export const MainContainer = styled.div`
   min-height: 100vh;
   background: linear-gradient(to bottom right, #f3f4f6, #e2e8f0);
+
+  /* outline: 3px dotted red; */
 `;
 
 export const Header = styled.div`

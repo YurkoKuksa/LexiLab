@@ -140,13 +140,13 @@ const VocabularyTrainer = ({ sheetId, sheetName, name, from, to }) => {
     <div
       key={componentKey}
       className="min-h-screen bg-gradient-to-br from-gray-100 to-slate-200 
-             flex items-start justify-center pt-10 p-4"
+           flex items-start justify-center pt-10 p-4"
     >
       <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full border border-gray-300">
         <div className="mb-6">
           <div className="flex items-center justify-between mb-3">
             <h1 className="text-2xl font-bold text-slate-800">
-              {/* Вивчення: */}
+              {/* Вивчення: min-h-screen outline outline-[2px] outline-dotted outline-green-500 */}
               {displayName}
             </h1>
 
