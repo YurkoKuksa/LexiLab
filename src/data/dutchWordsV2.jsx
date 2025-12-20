@@ -4,16 +4,14 @@ export const dutchWords = [
   'goedemorgen',
   'tot ziens',
   'alsjeblieft',
-  'ja',
-  'nee',
-  'fiets',
+
   'kaas',
   'gezellig',
   'lekker',
   'mooi',
   'water',
   'brood',
-  'huis',
+
   'zon',
 
   'slapen',
@@ -25,8 +23,4 @@ export const dutchWords = [
   'denken',
   'weten',
   'dag',
-  'avond',
-  'nacht',
-  'morgen',
-  'middag',
 ];

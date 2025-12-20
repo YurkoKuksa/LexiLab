@@ -29,7 +29,7 @@ import Welcome from 'pages/DutchPages/LounchPage/DutchLounchPage';
 import Taal from 'pages/DutchPages/Sections/TaalSections';
 import Zo from 'pages/DutchPages/Sections/ZoSections';
 import Soon from 'pages/ComingSoon/ComingSoonPage';
-import LessonPage from 'components/Dutch/LessonPage/LessonPage';
+import LessonPage from 'components/Dutch/LessonPage/LessonPageAutoBg';
 
 export const App = () => {
   return (

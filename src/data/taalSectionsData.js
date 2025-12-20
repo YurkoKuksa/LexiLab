@@ -1,6 +1,6 @@
 // src/data/taalSections.js
 // import Deel7 from '../pages/NL/Taal/Boek1/Deel7/Deel7';
-import Provincies from '../pages/NL/Taal/Boek1/NLcapitals/CapitalsNL';
+import Provincies from '../components/NLcomponents/Dutch/ProvincieCapitals';
 import Deel7 from '../components/NLcomponents/TaalCompleet/BookA1/Deel7.jsx';
 
 export const taalSectionsData = [

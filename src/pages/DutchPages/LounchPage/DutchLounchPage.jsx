@@ -85,7 +85,7 @@ const DutchLearningDonate = () => {
       }, 1000);
       return () => clearTimeout(timer);
     } else if (countdown === 0) {
-      window.location.href = '/LexiLab/nl';
+      window.location.href = '/LexiLab/dutch/taal';
     }
   }, [countdown]);
 
@@ -199,7 +199,7 @@ const DutchLearningDonate = () => {
 
         {/* Materials Button */}
         <NavLink
-          to="/nl"
+          to="/dutch/taal"
           className="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold py-4 px-8 rounded-xl text-xl mb-8 hover:from-blue-600 hover:to-blue-700 transition-all transform hover:scale-105 active:scale-95 shadow-lg flex items-center justify-center gap-3 whitespace-nowrap"
         >
           <HetBoek className="w-10 h-10" />
