@@ -85,7 +85,7 @@ const LessonPage = () => {
 
   return (
     <BackgroundComponent>
-      <div className="max-w-6xl mx-auto px-6 pt-8 sm:px-6 pt-4 sm:pt-8">
+      <div className="max-w-6xl mx-auto px-6 pt-8 sm:px-6 pt-0 sm:pt-8">
         <button
           onClick={() => navigate('/dutch/taal')}
           className="mb-4 sm:mb-6 text-xs sm:text-sm text-white hover:text-gray-200"
@@ -99,7 +99,7 @@ const LessonPage = () => {
         <p className="text-gray-300">{book.subtitle}</p>
       </div>
 
-      <div className=" text-sm sm:text-base text-gray-300 mt-[-20px] sm:mt-0">
+      <div className=" text-sm sm:text-base  mt-[-20px] sm:mt-0">
         <LessonComponent />
       </div>
     </BackgroundComponent>
