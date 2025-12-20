@@ -74,7 +74,7 @@ const VocabularyTrainer = ({ sheetId, sheetName, name, from, to }) => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-100 to-slate-200 flex items-center justify-center p-4">
+      <div className="min-h-screen flex items-start justify-center pt-10 p-4">
         <div className="bg-white rounded-2xl shadow-xl p-8 max-w-md w-full text-center border border-gray-200">
           <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-slate-500 mx-auto mb-4"></div>
           <p className="text-slate-600">Завантаження слів...</p>
@@ -85,7 +85,7 @@ const VocabularyTrainer = ({ sheetId, sheetName, name, from, to }) => {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-100 to-slate-200 flex items-center justify-center p-4">
+      <div className="min-h-screen flex items-start justify-center pt-10 p-4">
         <div className="bg-white rounded-2xl shadow-xl p-8 max-w-md w-full text-center border border-gray-200">
           <XCircle className="w-16 h-16 text-red-500 mx-auto mb-4" />
           <h1 className="text-2xl font-bold text-slate-800 mb-2">Помилка</h1>
@@ -97,7 +97,7 @@ const VocabularyTrainer = ({ sheetId, sheetName, name, from, to }) => {
 
   if (queue.length === 0 && currentWord === null) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-100 to-slate-200 flex items-center justify-center p-4">
+      <div className="min-h-screen flex items-start justify-center pt-10 p-4">
         <div className="bg-white rounded-2xl shadow-xl p-8 max-w-md w-full text-center border border-gray-200">
           <Trophy className="w-16 h-16 text-yellow-500 mx-auto mb-4" />
           <h1 className="text-3xl font-bold text-slate-800 mb-2">Вітаємо!</h1>
@@ -137,10 +137,14 @@ const VocabularyTrainer = ({ sheetId, sheetName, name, from, to }) => {
   }
 
   return (
+    // <div
+    //   key={componentKey}
+    //   className="min-h-screen bg-gradient-to-br from-gray-100 to-slate-200
+    //        flex items-start justify-center pt-10 p-4"
+    // >
     <div
       key={componentKey}
-      className="min-h-screen bg-gradient-to-br from-gray-100 to-slate-200 
-           flex items-start justify-center pt-10 p-4"
+      className="min-h-screen flex items-start justify-center pt-10 p-4"
     >
       <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full border border-gray-300">
         <div className="mb-6">

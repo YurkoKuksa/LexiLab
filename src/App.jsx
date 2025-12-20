@@ -1,10 +1,12 @@
 import { Route, Routes } from 'react-router-dom';
 
 import Layout from './components/Layout/Layout';
+import LayoutDu from './components/Layout/LayoutDu';
 
 import Navigator from 'pages/NavigatorPage/NavigatorPage';
+import BlocksMenu from 'pages/DutchPages/Blocks/Bloks';
 
-import LearnNL from 'pages/NL/NLcapitals/CapitalsNL';
+import LearnNL from 'pages/NL/Taal/Boek1/NLcapitals/CapitalsNL';
 import Menu from 'pages/MenuPage/MenuPage';
 import Birds from 'pages/AnimalsTopics/BirdsPage/BirdsPage';
 import Wild from 'pages/AnimalsTopics/WildPage/WildPage';
@@ -23,6 +25,11 @@ import Micro from 'pages/AnimalsTopics/MicroorganismsPage/MicroorganismsPage';
 import Myth from 'pages/AnimalsTopics/MythicalCreaturesPage/MythicalCreaturesPage';
 import Pets from 'pages/AnimalsTopics/PetsPage/PetsPage';
 import Cats from 'pages/AnimalsTopics/WildCatsPage/WildCatsPage';
+import Welcome from 'pages/DutchPages/LounchPage/DutchLounchPage';
+import Taal from 'pages/DutchPages/Sections/TaalSections';
+import Zo from 'pages/DutchPages/Sections/ZoSections';
+import Soon from 'pages/ComingSoon/ComingSoonPage';
+import LessonPage from 'components/Dutch/LessonPage/LessonPage';
 
 export const App = () => {
   return (
@@ -33,11 +40,11 @@ export const App = () => {
           <Route path="nl" element={<LearnNL />} />
           <Route path="menu" element={<Menu />} />
           <Route path="test" element={<TestPage />} />
+
           <Route path="birds" element={<Birds />} />
           <Route path="wild" element={<Wild />} />
           <Route path="domestic" element={<Domestic />} />
           <Route path="seaanim" element={<SeaAnim />} />
-
           <Route path="parts" element={<Parts />} />
           <Route path="sounds" element={<Sounds />} />
           <Route path="words" element={<Words />} />
@@ -50,6 +57,18 @@ export const App = () => {
           <Route path="pets" element={<Pets />} />
           <Route path="cats" element={<Cats />} />
         </Route>
+        <Route path="soon" element={<Soon />} />
+
+        <Route path="/dutch" element={<LayoutDu />}>
+          <Route index element={<BlocksMenu />} />
+          <Route path="soon" element={<Soon />} />
+          <Route path="taal" element={<Taal />} />
+          <Route path="taal/:bookId/:themeId" element={<LessonPage />} />
+
+          <Route path="zo" element={<Zo />} />
+        </Route>
+
+        <Route path="/welcome" element={<Welcome />} />
       </Routes>
     </>
   );

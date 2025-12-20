@@ -76,6 +76,7 @@ const Footer = () => {
 
   return (
     <footer className="bg-gradient-to-br from-slate-800 via-slate-900 to-gray-900 text-white">
+      {/* // <footer className="bg-gradient-to-br from-[#013944] via-[#024550] to-[#134f5c] text-white"> */}
       <div className="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           {/* Ліва частина - Форма зворотного зв'язку */}

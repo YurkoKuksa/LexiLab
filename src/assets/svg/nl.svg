@@ -1,0 +1,28 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Фон -->
+  <rect width="200" height="200" fill="#E8F4F8"/>
+  
+  <!-- Древко -->
+  <rect x="40" y="50" width="6" height="130" fill="#8B4513"/>
+  <circle cx="43" cy="47" r="5" fill="#DAA520"/>
+  
+  <!-- Прапор -->
+  <!-- Червона смуга -->
+  <rect x="46" y="60" width="120" height="20" fill="#AE1C28"/>
+  
+  <!-- Біла смуга -->
+  <rect x="46" y="80" width="120" height="20" fill="#FFFFFF"/>
+  
+  <!-- Синя смуга -->
+  <rect x="46" y="100" width="120" height="20" fill="#21468B"/>
+  
+  <!-- Ефект вітру (хвилястість прапора) -->
+  <path d="M 166 60 Q 170 65 166 70 Q 170 75 166 80 Q 170 85 166 90 Q 170 95 166 100 Q 170 105 166 110 Q 170 115 166 120" 
+        stroke="#999" stroke-width="1" fill="none" opacity="0.3"/>
+  
+  <!-- Тінь прапора -->
+  <rect x="46" y="60" width="120" height="60" fill="black" opacity="0.05"/>
+  
+  <!-- Тінь під древком -->
+  <ellipse cx="43" cy="182" rx="8" ry="3" fill="black" opacity="0.2"/>
+</svg>
