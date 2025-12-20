@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/LexiLab/static/css/main.7be65288.css",
-    "main.js": "/LexiLab/static/js/main.0ca968a4.js",
+    "main.css": "/LexiLab/static/css/main.d3b44183.css",
+    "main.js": "/LexiLab/static/js/main.8b819bea.js",
     "static/media/boek.svg": "/LexiLab/static/media/boek.a5004dc5f7906bfa567411e0c97dcc14.svg",
     "static/media/nl.svg": "/LexiLab/static/media/nl.c77665eaaf787caab3bff2e67d22004c.svg",
     "index.html": "/LexiLab/index.html",
     "static/media/double_arrow_up.svg": "/LexiLab/static/media/double_arrow_up.b5d00926162fa68a1db33ef1a5bd0806.svg",
-    "main.7be65288.css.map": "/LexiLab/static/css/main.7be65288.css.map",
-    "main.0ca968a4.js.map": "/LexiLab/static/js/main.0ca968a4.js.map"
+    "main.d3b44183.css.map": "/LexiLab/static/css/main.d3b44183.css.map",
+    "main.8b819bea.js.map": "/LexiLab/static/js/main.8b819bea.js.map"
   },
   "entrypoints": [
-    "static/css/main.7be65288.css",
-    "static/js/main.0ca968a4.js"
+    "static/css/main.d3b44183.css",
+    "static/js/main.8b819bea.js"
   ]
 }
