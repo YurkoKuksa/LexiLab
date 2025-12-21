@@ -1,14 +1,15 @@
-import { Suspense } from 'react';
+import { Suspense, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { ScrollUpBtn } from '../ScrollUpButton/ScrollUpButton';
-import Footer from '../Footer/Footer';
-import Header from '../Am/HeaderAm/Header';
+import LearningHeader from '../PageHeader/PageHeader';
 
 import SnowfallBackground from '../BackGround/SnowfallBackground';
 import BlueSnow from '../BackGround/SnowingV2';
 import ChristmasBackground from '../BackGround/ChristmasBackground';
 
 const Layout = () => {
+  const [pageTitle, setPageTitle] = useState('');
+
   const backgrounds = {
     winter: SnowfallBackground,
     blueSnow: BlueSnow,
@@ -62,14 +63,16 @@ const Layout = () => {
   const backgroundType = getSeasonalTheme();
   const BackgroundComponent = backgrounds[backgroundType];
 
+  //   const pageTitle = 'Animals Words';
+
   return (
     <>
       <BackgroundComponent>
-        <Header />
+        <LearningHeader title={pageTitle} />
         <Suspense fallback={<div>Loading...</div>}>
-          <Outlet />
+          <Outlet context={{ setPageTitle }} />
         </Suspense>
-        <Footer />
+
         <ScrollUpBtn />
       </BackgroundComponent>
     </>

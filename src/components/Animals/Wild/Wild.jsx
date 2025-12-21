@@ -1,12 +1,22 @@
+import { useOutletContext } from 'react-router-dom';
 import VocabularyTrainer from '../../VocabularyTrainer/VocabularyTrainer';
+import { useEffect } from 'react';
 
 const Wild = () => {
+  const { setPageTitle } = useOutletContext();
+
+  const pageName = 'Wild Animals';
+
+  useEffect(() => {
+    setPageTitle(pageName);
+  }, [setPageTitle]);
+
   return (
     <>
       <VocabularyTrainer
         sheetId="17BUm13x3abpJRjvjAtN8qwz9uE0k1KMPUZvS0_7yQFQ"
         sheetName="Wild"
-        name="Wild Animals"
+        name={pageName}
         from="ENG"
         to="УКР"
       />

@@ -151,43 +151,43 @@ export const AnimatedNavLink = styled(NavLink)`
     background: ${props => {
       switch (props.$variant) {
         case 'birds':
-          return 'linear-gradient(to right, #3b82f6, #a855f7)';
+          return 'linear-gradient(to right, #76a5af, #024550)';
         case 'wild':
-          return 'linear-gradient(to right, #a855f7, #ec4899)';
+          return 'linear-gradient(to right, #45818e, #013f4a)';
         case 'domestic':
-          return 'linear-gradient(to right, #ec4899, #ef4444)';
+          return 'linear-gradient(to right, #a2c4c9, #013944)';
         case 'sea':
-          return 'linear-gradient(to right, #06b6d4, #3b82f6)';
+          return 'linear-gradient(to right, #76a5af, #013f4a)';
         case 'insects':
-          return 'linear-gradient(to right, #84cc16, #22c55e)';
+          return 'linear-gradient(to right, #76a5af, #013f4a)';
         case 'parts':
-          return 'linear-gradient(to right, #22c55e, #10b981)';
+          return 'linear-gradient(to right, #76a5af, #013f4a)';
         case 'sounds':
-          return 'linear-gradient(to right, #ff7e5f, #feb47b)';
+          return 'linear-gradient(to right, #45818e, #013f4a)';
         case 'words':
-          return 'linear-gradient(to right, #2b5876, #4e4376)';
+          return 'linear-gradient(to right, #76a5af 0%, #45818e 40%, #013f4a 100%)';
         case 'dinos':
-          return 'linear-gradient(to right, #11998e, #38ef7d)';
+          return 'linear-gradient(to right, #a2c4c9, #013944)';
         case 'fish':
-          return 'linear-gradient(to right, #6a11cb, #2575fc)';
+          return 'linear-gradient(to right, #45818e, #013f4a)';
         case 'group':
-          return 'linear-gradient(to right, #f12711, #f5af19)';
+          return 'linear-gradient(to right, #76a5af 0%, #45818e 40%, #013f4a 100%)';
         case 'micro':
-          return 'linear-gradient(to right, #2af598, #009efd)';
+          return 'linear-gradient(to right, #a2c4c9, #013944)';
         case 'myth':
-          return 'linear-gradient(to right, #ff9a9e, #fecfef)';
+          return 'linear-gradient(to right, #45818e, #013f4a)';
         case 'pets':
-          return 'linear-gradient(to right, #485563, #29323c)';
+          return 'linear-gradient(to right, #45818e, #013f4a)';
         case 'cats':
-          return 'linear-gradient(to right, #00c6fb, #005bea)';
+          return 'linear-gradient(to right, #a2c4c9, #013944)';
         case 'peach':
-          return 'linear-gradient(to right, #f6d365, #fda085)';
+          return 'linear-gradient(to right, #a2c4c9, #013944)';
         case 'volcano':
-          return 'linear-gradient(to right, #ff512f, #dd2476)';
+          return 'linear-gradient(to right, #a2c4c9, #013944)';
         case 'aqua':
-          return 'linear-gradient(to right, #78ffd6, #007991)';
+          return 'linear-gradient(to right, #a2c4c9, #013944)';
         case 'desert':
-          return 'linear-gradient(to right, #c79081, #dfa579)';
+          return 'linear-gradient(to right, #76a5af 0%, #45818e 40%, #013f4a 100%)';
         case 'forest':
           return 'linear-gradient(to right, #134e5e, #71b280)';
         case 'candy':

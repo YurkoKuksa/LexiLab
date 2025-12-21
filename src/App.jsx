@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 
 import Layout from './components/Layout/Layout';
 import LayoutDu from './components/Layout/LayoutDu';
+import LayoutAnimals from './components/Layout/LayoutAnimals';
 
 import Navigator from 'pages/NavigatorPage/NavigatorPage';
 import BlocksMenu from 'pages/DutchPages/Blocks/Bloks';
@@ -41,21 +42,23 @@ export const App = () => {
           <Route path="menu" element={<Menu />} />
           <Route path="test" element={<TestPage />} />
 
-          <Route path="birds" element={<Birds />} />
-          <Route path="wild" element={<Wild />} />
-          <Route path="domestic" element={<Domestic />} />
-          <Route path="seaanim" element={<SeaAnim />} />
-          <Route path="parts" element={<Parts />} />
-          <Route path="sounds" element={<Sounds />} />
-          <Route path="words" element={<Words />} />
-          <Route path="dinos" element={<Dinosaurs />} />
-          <Route path="fish" element={<Fish />} />
-          <Route path="group" element={<Group />} />
-          <Route path="insects" element={<Insects />} />
-          <Route path="micro" element={<Micro />} />
-          <Route path="myth" element={<Myth />} />
-          <Route path="pets" element={<Pets />} />
-          <Route path="cats" element={<Cats />} />
+          <Route path="/" element={<LayoutAnimals />}>
+            <Route path="birds" element={<Birds />} />
+            <Route path="wild" element={<Wild />} />
+            <Route path="domestic" element={<Domestic />} />
+            <Route path="seaanim" element={<SeaAnim />} />
+            <Route path="parts" element={<Parts />} />
+            <Route path="sounds" element={<Sounds />} />
+            <Route path="words" element={<Words />} />
+            <Route path="dinos" element={<Dinosaurs />} />
+            <Route path="fish" element={<Fish />} />
+            <Route path="group" element={<Group />} />
+            <Route path="insects" element={<Insects />} />
+            <Route path="micro" element={<Micro />} />
+            <Route path="myth" element={<Myth />} />
+            <Route path="pets" element={<Pets />} />
+            <Route path="cats" element={<Cats />} />
+          </Route>
         </Route>
         <Route path="soon" element={<Soon />} />
 
