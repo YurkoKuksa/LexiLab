@@ -7,7 +7,7 @@ export const Header = styled.header`
   border-bottom: 1px solid #e5e7eb;
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: -100;
 `;
 
 export const HeaderContent = styled.div`

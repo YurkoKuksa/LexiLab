@@ -11,6 +11,7 @@ import {
   Title,
 } from './PageHeaderStyled';
 
+// текст на  MenuPage.jsx
 const PageHeader = ({ title, typewriterOptions }) => {
   const navigate = useNavigate();
   const displayText = useTypewriterEffect(title, typewriterOptions);

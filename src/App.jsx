@@ -9,10 +9,14 @@ import BlocksMenu from 'pages/DutchPages/Blocks/Bloks';
 
 import LearnNL from 'pages/NL/Taal/Boek1/NLcapitals/CapitalsNL';
 import Menu from 'pages/MenuPage/MenuPage';
+import AmericanWelcomPage from 'pages/Am/StartingPage/HolographicCard';
+
 import Birds from 'pages/AnimalsTopics/BirdsPage/BirdsPage';
 import Wild from 'pages/AnimalsTopics/WildPage/WildPage';
 import Domestic from 'pages/AnimalsTopics/DomesticPage/DomesticPage';
 import TestPage from 'pages/testPage/testPage';
+import TestPage1 from 'pages/Am/StartingPage/HolographicCard';
+
 import SeaAnim from 'pages/AnimalsTopics/SeaAnimalsPage/SeaAnimalsPage';
 
 import Parts from 'pages/AnimalsTopics/AnimalPartsPage/AnimalPartsPage';
@@ -39,8 +43,10 @@ export const App = () => {
         <Route path="/" element={<Layout />}>
           <Route index element={<Navigator />} />
           <Route path="nl" element={<LearnNL />} />
-          <Route path="menu" element={<Menu />} />
+
+          <Route path="am" element={<Menu />} />
           <Route path="test" element={<TestPage />} />
+          <Route path="testtwo" element={<TestPage1 />} />
 
           <Route path="/" element={<LayoutAnimals />}>
             <Route path="birds" element={<Birds />} />
@@ -61,6 +67,8 @@ export const App = () => {
           </Route>
         </Route>
         <Route path="soon" element={<Soon />} />
+        <Route path="menu" element={<AmericanWelcomPage />} />
+        <Route path="welcomeam" element={<AmericanWelcomPage />} />
 
         <Route path="/dutch" element={<LayoutDu />}>
           <Route index element={<BlocksMenu />} />

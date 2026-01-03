@@ -37,7 +37,7 @@ const Menu = () => {
         { to: '/seaanim', label: 'Sea Animals', variant: 'sea', delay: '0.6s' },
         { to: '/fish', label: 'Fish', variant: 'fish', delay: '0.8s' },
         { to: '/pets', label: 'Pets', variant: 'pets', delay: '1s' },
-        { to: '/cats', label: 'Whild Cats', variant: 'cats', delay: '1.2s' },
+        { to: '/cats', label: 'Wild Cats', variant: 'cats', delay: '1.2s' },
         { to: '/insects', label: 'Insects', variant: 'insects', delay: '1.4s' },
         {
           to: '/myth',

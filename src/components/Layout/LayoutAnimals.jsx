@@ -33,7 +33,7 @@ const Layout = () => {
 
     // Новий рік (27 грудня - 7 січня)
     if ((month === 12 && day >= 27) || (month === 1 && day <= 7)) {
-      return 'winter';
+      return 'blueSnow';
     }
 
     // Зима (грудень, січень, лютий)
