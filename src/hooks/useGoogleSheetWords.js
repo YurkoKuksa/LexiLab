@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-export function useGoogleSheetWords(sheetId, sheetName, reversed = false) {
+export function useGoogleSheetWords(sheetId, sheetName) {
   const [words, setWords] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -20,11 +20,10 @@ export function useGoogleSheetWords(sheetId, sheetName, reversed = false) {
         setLoading(true);
         setError(null);
 
-        const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&sheet=${sheetName}`;
-
-        const res = await fetch(url, {
-          signal: abortController.signal,
-        });
+        const res = await fetch(
+          `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&sheet=${sheetName}`,
+          { signal: abortController.signal }
+        );
 
         if (!res.ok) {
           throw new Error(
@@ -43,51 +42,40 @@ export function useGoogleSheetWords(sheetId, sheetName, reversed = false) {
 
         const json = JSON.parse(match[1]);
 
-        if (!json.table || !json.table.rows) {
-          throw new Error('Таблиця порожня або має невірний формат');
-        }
-
         const rows = json.table.rows
           .map(row => {
-            const wordIndex = reversed ? 3 : 1;
-            const translationIndex = reversed ? 1 : 3;
+            const words = row.c
+              .slice(1, 11) // B–K
+              .map(c => c?.v?.toString().trim())
+              .filter(Boolean);
 
-            const word = row.c[wordIndex]?.v?.toString().trim() || '';
-            const translation =
-              row.c[translationIndex]?.v?.toString().trim() || '';
+            const translations = row.c
+              .slice(11, 21) // L–U
+              .map(c => c?.v?.toString().trim())
+              .filter(Boolean);
 
-            return { word, translation };
+            if (words.length === 0 || translations.length === 0) return null;
+
+            return { words, translations };
           })
-          .filter(row => row.word && row.translation);
+          .filter(Boolean);
 
         if (rows.length === 0) {
-          throw new Error('Не знайдено жодного валідного слова в таблиці');
+          throw new Error('Не знайдено жодного валідного слова');
         }
 
         if (isSubscribed) {
           setWords(rows);
-          setError(null);
-          const direction = reversed ? 'УКР → ENG' : 'ENG → УКР';
-          console.log(
-            `✅ Завантажено ${rows.length} слів "${sheetName}" (${direction})`
-          );
         }
       } catch (err) {
-        if (err.name === 'AbortError') {
-          console.log('🔄 Запит скасовано');
-          return;
-        }
-
-        console.error('❌ Помилка завантаження Google Sheet:', err);
-
+        if (err.name === 'AbortError') return;
+        console.error(err);
         if (isSubscribed) {
           setError(err.message);
           setWords([]);
         }
       } finally {
-        if (isSubscribed) {
-          setLoading(false);
-        }
+        if (isSubscribed) setLoading(false);
       }
     }
 
@@ -97,7 +85,7 @@ export function useGoogleSheetWords(sheetId, sheetName, reversed = false) {
       isSubscribed = false;
       abortController.abort();
     };
-  }, [sheetId, sheetName, reversed]);
+  }, [sheetId, sheetName]);
 
   return { words, loading, error };
 }

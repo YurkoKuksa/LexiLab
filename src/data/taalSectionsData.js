@@ -2,6 +2,9 @@
 // import Deel7 from '../pages/NL/Taal/Boek1/Deel7/Deel7';
 import Provincies from '../components/NLcomponents/Dutch/ProvincieCapitals';
 import Deel7 from '../components/NLcomponents/TaalCompleet/BookA1/Deel7.jsx';
+import Deel8 from '../components/NLcomponents/TaalCompleet/BookA1/Deel8.jsx';
+import Deel8Pl from '../components/NLcomponents/TaalCompleet/BookA1/Deel8_pl';
+import Deel8Animal from '../components/NLcomponents/TaalCompleet/BookA1/Deel8_animals.jsx';
 
 export const taalSectionsData = [
   {
@@ -25,7 +28,7 @@ export const taalSectionsData = [
         description: 'De school',
         lessons: 12,
         duration: '3 години',
-        icon: '👋',
+        icon: '🔢👋',
       },
       {
         id: 'wonen',
@@ -33,7 +36,7 @@ export const taalSectionsData = [
         description: 'Wonen',
         lessons: 6,
         duration: '1.5 години',
-        icon: '🔢',
+        icon: '🏠',
       },
       {
         id: 'eten-en-drinken',
@@ -41,7 +44,7 @@ export const taalSectionsData = [
         description: 'Eten en drinken',
         lessons: 10,
         duration: '2.5 години',
-        icon: '👤',
+        icon: '🍎',
       },
       {
         id: 'docter',
@@ -49,7 +52,7 @@ export const taalSectionsData = [
         description: 'De docter',
         lessons: 10,
         duration: '2.5 години',
-        icon: '👤',
+        icon: '🩺',
       },
       {
         id: 'kleren',
@@ -57,7 +60,7 @@ export const taalSectionsData = [
         description: 'De kleren',
         lessons: 10,
         duration: '2.5 години',
-        icon: '👤',
+        icon: '👕',
       },
       {
         id: 'reizen',
@@ -65,7 +68,7 @@ export const taalSectionsData = [
         description: 'Reizen',
         lessons: 10,
         duration: '2.5 години',
-        icon: '👤',
+        icon: '✈️',
         component: Deel7,
       },
       {
@@ -74,16 +77,44 @@ export const taalSectionsData = [
         description: 'Vrije tijd',
         lessons: 10,
         duration: '2.5 години',
-        icon: '👤',
+        icon: '🎮',
+        component: Deel8,
       },
+    ],
+  },
+  {
+    id: 'boek1extra',
+    title: 'TaalCompleet Boek1 Extra',
+    subtitle: 'A1 - Додаткова лексика',
+    icon: '➕',
+    color: 'from-green-400 to-emerald-500',
+    blocks: [
       {
         id: 'provincies',
-        title: 'De kaart van Nederland',
+        title: 'Thema 7. De kaart van Nederland',
         description: 'De hoofdsteden van de provincies.',
-        lessons: 10,
+        lessons: 2,
         duration: '2.5 години',
         icon: '🏢',
         component: Provincies,
+      },
+      {
+        id: 'animal',
+        title: 'Thema 8',
+        description: 'Dieren',
+        lessons: 1,
+        duration: '1 година',
+        icon: '🐶',
+        component: Deel8Animal,
+      },
+      {
+        id: 'deel8-pl',
+        title: 'Thema 8',
+        description: 'Het meervoud (pluralis)',
+        lessons: 1,
+        duration: '4 години',
+        icon: '👥',
+        component: Deel8Pl,
       },
     ],
   },

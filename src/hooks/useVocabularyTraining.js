@@ -1,5 +1,7 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { useGoogleSheetWords } from './useGoogleSheetWords';
+import { pickRandom } from '../utils/random';
+import { normalizeWord } from '../utils/normalizeWord';
 
 export function useVocabularyTrainer(sheetId, sheetName, options = {}) {
   const {
@@ -14,236 +16,243 @@ export function useVocabularyTrainer(sheetId, sheetName, options = {}) {
     to = 'B',
   } = options;
 
+  /* ---------------- data ---------------- */
+
   const {
     words: apiWords,
     loading,
     error,
-  } = useGoogleSheetWords(sheetId, sheetName, reversed);
+  } = useGoogleSheetWords(sheetId, sheetName);
 
+  /* ---------------- state ---------------- */
+
+  const [queue, setQueue] = useState([]);
   const [currentWord, setCurrentWord] = useState(null);
   const [userInput, setUserInput] = useState('');
   const [timeLeft, setTimeLeft] = useState(timeLimit);
   const [feedback, setFeedback] = useState(null);
   const [learnedWords, setLearnedWords] = useState([]);
-  const [queue, setQueue] = useState([]);
+
   const timerRef = useRef(null);
   const inputRef = useRef(null);
+
+  /* ---------------- direction & storage ---------------- */
 
   const direction = reversed ? `${to}-${from}` : `${from}-${to}`;
   const STORAGE_KEY = storageKey || `learnedWords_${sheetName}_${direction}`;
 
+  /* ---------------- helpers (derived state) ---------------- */
+
+  const { questionWord, validAnswers } = useMemo(() => {
+    if (!currentWord) {
+      return { questionWord: null, validAnswers: [] };
+    }
+
+    return reversed
+      ? {
+          questionWord: pickRandom(currentWord.translations),
+          validAnswers: currentWord.words,
+        }
+      : {
+          questionWord: pickRandom(currentWord.words),
+          validAnswers: currentWord.translations,
+        };
+  }, [currentWord, reversed]);
+
+  /* ---------------- load progress ---------------- */
+
   useEffect(() => {
     const saved = localStorage.getItem(STORAGE_KEY);
-
-    console.log(`🔍 Спроба завантажити прогрес для ключа: ${STORAGE_KEY}`);
-    console.log(`📦 Знайдені дані:`, saved);
-
-    if (!saved) {
-      console.log(`❌ Прогрес не знайдено для ${STORAGE_KEY}`);
-      setLearnedWords([]);
-      return;
-    }
+    if (!saved) return;
 
     try {
       const parsed = JSON.parse(saved);
-
       if (Array.isArray(parsed)) {
         setLearnedWords(parsed);
-        console.log(
-          `✅ Завантажено прогрес "${sheetName}" (${direction}): ${parsed.length} слів`
-        );
-      } else {
-        throw new Error('Невірний формат даних');
       }
-    } catch (err) {
-      console.error('❌ Помилка завантаження прогресу:', err);
+    } catch {
       localStorage.removeItem(STORAGE_KEY);
-      setLearnedWords([]);
     }
-  }, [STORAGE_KEY, sheetName, direction]);
+  }, [STORAGE_KEY]);
+
+  /* ---------------- save progress ---------------- */
 
   useEffect(() => {
-    if (learnedWords.length > 0) {
-      try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(learnedWords));
-        console.log(
-          `💾 Збережено прогрес "${sheetName}" (${direction}): ${learnedWords.length} слів`
-        );
-        console.log(`🔑 Ключ: ${STORAGE_KEY}`);
-      } catch (err) {
-        console.error('❌ Помилка збереження прогресу:', err);
-      }
-    }
-  }, [learnedWords, STORAGE_KEY, sheetName, direction]);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(learnedWords));
+  }, [learnedWords, STORAGE_KEY]);
 
-  const pickRandomWord = useCallback(
-    wordQueue => {
-      if (!wordQueue || wordQueue.length === 0) {
-        setCurrentWord(null);
-        return;
-      }
+  /* ---------------- init queue ---------------- */
 
-      const randomIndex = Math.floor(Math.random() * wordQueue.length);
-      const word = wordQueue[randomIndex];
+  useEffect(() => {
+    if (!apiWords.length) return;
 
-      setCurrentWord(word);
-      setTimeLeft(timeLimit);
-      setUserInput('');
-      setFeedback(null);
+    const initialized = apiWords.map(w => ({
+      ...w,
+      correctCount: 0,
+      id: crypto.randomUUID(),
+    }));
 
-      setTimeout(() => {
-        inputRef.current?.focus();
-      }, 100);
-    },
-    [timeLimit]
-  );
+    const unlearned = initialized.filter(
+      w =>
+        !learnedWords.some(
+          l =>
+            JSON.stringify(l.words) === JSON.stringify(w.words) &&
+            JSON.stringify(l.translations) === JSON.stringify(w.translations)
+        )
+    );
+
+    setQueue(unlearned);
+    setCurrentWord(unlearned[0] || null);
+    setTimeLeft(timeLimit);
+    setFeedback(null);
+  }, [apiWords, learnedWords, timeLimit]);
+
+  /* ---------------- timeout handler ---------------- */
 
   const handleTimeout = useCallback(() => {
     setFeedback({ type: 'timeout', message: 'Час вийшов!' });
 
     setTimeout(() => {
       setQueue(prevQueue => {
-        pickRandomWord(prevQueue);
+        const next = prevQueue.length ? pickRandom(prevQueue) : null;
+        setCurrentWord(next);
         return prevQueue;
       });
-    }, correctAnswerDelay);
-  }, [pickRandomWord, correctAnswerDelay]);
+
+      setTimeLeft(timeLimit);
+      setFeedback(null);
+    }, wrongAnswerDelay);
+  }, [timeLimit, wrongAnswerDelay]);
+
+  /* ---------------- timer ---------------- */
 
   useEffect(() => {
-    if (!apiWords || apiWords.length === 0) return;
+    if (!currentWord || feedback || isPaused) return;
+    if (timeLeft <= 0) return;
 
-    const initializedWords = apiWords.map(w => ({
-      ...w,
-      correctCount: 0,
-      id: `${w.word}_${w.translation}_${Math.random()
-        .toString(36)
-        .substr(2, 9)}`,
-    }));
-
-    const unlearnedWords = initializedWords.filter(
-      word =>
-        !learnedWords.some(
-          learned =>
-            learned.word === word.word &&
-            learned.translation === word.translation
-        )
-    );
-
-    console.log(`📚 Статистика "${sheetName}" (${direction}):`);
-    console.log(`   Всього слів: ${initializedWords.length}`);
-    console.log(`   Вивчено: ${learnedWords.length}`);
-    console.log(`   Залишилось: ${unlearnedWords.length}`);
-
-    setQueue(unlearnedWords);
-
-    if (unlearnedWords.length > 0) {
-      pickRandomWord(unlearnedWords);
-    }
-  }, [apiWords, learnedWords, pickRandomWord, sheetName, direction]);
-
-  useEffect(() => {
-    if (!currentWord || feedback || isPaused) {
-      return;
-    }
-
-    if (timeLeft > 0) {
-      timerRef.current = setTimeout(() => {
-        setTimeLeft(timeLeft - 1);
-      }, 1000);
-    } else {
-      handleTimeout();
-    }
+    timerRef.current = setTimeout(() => {
+      setTimeLeft(timeLeft - 1);
+    }, 1000);
 
     return () => clearTimeout(timerRef.current);
-  }, [timeLeft, currentWord, feedback, handleTimeout, isPaused]);
+  }, [timeLeft, currentWord, feedback, isPaused]);
+
+  useEffect(() => {
+    if (timeLeft !== 0) return;
+    if (!currentWord || feedback || isPaused) return;
+
+    handleTimeout();
+  }, [timeLeft, currentWord, feedback, isPaused, handleTimeout]);
+
+  /* ---------------- focus input ---------------- */
+  useEffect(() => {
+    if (!currentWord || !inputRef.current) return;
+    if (isPaused) return; // не фокусуємо під час паузи
+
+    const timeout = setTimeout(() => {
+      inputRef.current.focus();
+    }, 50);
+
+    return () => clearTimeout(timeout);
+  }, [currentWord, isPaused]);
+
+  /* ---------------- submit ---------------- */
 
   const handleSubmit = useCallback(() => {
     if (!userInput.trim() || !currentWord || feedback) return;
 
-    const normalizedInput = userInput.trim().toLowerCase();
-    const normalizedAnswer = currentWord.translation.toLowerCase();
-    const isCorrect = normalizedInput === normalizedAnswer;
+    clearTimeout(timerRef.current);
+
+    // const input = userInput.trim().toLowerCase();
+    // const isCorrect = validAnswers.some(a => a.toLowerCase() === input);
+    const normalizedInput = normalizeWord(userInput);
+
+    const isCorrect = validAnswers.some(
+      a => normalizeWord(a) === normalizedInput
+    );
 
     if (isCorrect) {
-      const updatedWord = {
+      const updated = {
         ...currentWord,
         correctCount: currentWord.correctCount + 1,
       };
 
-      if (updatedWord.correctCount >= requiredCorrectAnswers) {
+      if (updated.correctCount >= requiredCorrectAnswers) {
         setFeedback({ type: 'learned', message: 'Вивчено! 🎉' });
 
         setTimeout(() => {
-          setLearnedWords(prev => [...prev, updatedWord]);
-          const newQueue = queue.filter(w => w.id !== currentWord.id);
+          setLearnedWords(prev => [...prev, updated]);
+          const newQueue = queue.filter(w => w.id !== updated.id);
           setQueue(newQueue);
-          pickRandomWord(newQueue);
+          setCurrentWord(newQueue[0] || null);
+          setTimeLeft(timeLimit);
+          setFeedback(null);
         }, correctAnswerDelay);
       } else {
         setFeedback({
           type: 'correct',
-          message: `Правильно! (${updatedWord.correctCount}/${requiredCorrectAnswers})`,
+          message: `Правильно! (${updated.correctCount}/${requiredCorrectAnswers})`,
         });
 
-        const newQueue = queue.map(w =>
-          w.id === currentWord.id ? updatedWord : w
-        );
+        const newQueue = queue.map(w => (w.id === updated.id ? updated : w));
         setQueue(newQueue);
 
         setTimeout(() => {
-          pickRandomWord(newQueue);
+          setCurrentWord(pickRandom(newQueue));
+          setTimeLeft(timeLimit);
+          setFeedback(null);
         }, correctAnswerDelay);
       }
     } else {
       setFeedback({
         type: 'wrong',
-        message: `Неправильно! Правильна відповідь: ${currentWord.translation}`,
+        // message: `Неправильно! Правильна відповідь: ${validAnswers.join(', ')}`,
+        message: `Неправильно! Правильна відповідь:  ${validAnswers[0]}`,
+
+        //  Показувати всі, але красиво
+        // message: `Неправильно! Можливі відповіді: ${validAnswers.join(' / ')}`
       });
 
-      const resetWord = { ...currentWord, correctCount: 0 };
-      const newQueue = queue.map(w =>
-        w.id === currentWord.id ? resetWord : w
-      );
+      const reset = { ...currentWord, correctCount: 0 };
+      const newQueue = queue.map(w => (w.id === reset.id ? reset : w));
       setQueue(newQueue);
 
       setTimeout(() => {
-        pickRandomWord(newQueue);
+        setCurrentWord(pickRandom(newQueue));
+        setTimeLeft(timeLimit);
+        setFeedback(null);
       }, wrongAnswerDelay);
     }
+
+    setUserInput('');
   }, [
     userInput,
     currentWord,
+    validAnswers,
     queue,
     feedback,
-    pickRandomWord,
     requiredCorrectAnswers,
     correctAnswerDelay,
     wrongAnswerDelay,
+    timeLimit,
   ]);
 
-  const handleResetProgress = useCallback(() => {
-    const confirmed = window.confirm(
-      `Ви впевнені що хочете скинути весь прогрес для "${sheetName}" (${direction})? Це не можна буде скасувати!`
-    );
+  /* ---------------- reset ---------------- */
 
-    if (confirmed) {
-      try {
-        localStorage.removeItem(STORAGE_KEY);
-        setLearnedWords([]);
-        console.log(`🔄 Прогрес "${sheetName}" (${direction}) скинуто`);
-        window.location.reload();
-      } catch (err) {
-        console.error('❌ Помилка скидання прогресу:', err);
-      }
-    }
-  }, [STORAGE_KEY, sheetName, direction]);
+  const handleResetProgress = useCallback(() => {
+    if (!window.confirm('Скинути весь прогрес?')) return;
+    localStorage.removeItem(STORAGE_KEY);
+    setLearnedWords([]);
+    window.location.reload();
+  }, [STORAGE_KEY]);
+
+  /* ---------------- public api ---------------- */
 
   return {
-    currentWord,
+    currentWord: currentWord ? { ...currentWord, word: questionWord } : null,
     userInput,
     setUserInput,
     timeLeft,
-    setTimeLeft,
     feedback,
     learnedWords,
     queue,
@@ -252,7 +261,7 @@ export function useVocabularyTrainer(sheetId, sheetName, options = {}) {
     inputRef,
     handleSubmit,
     handleResetProgress,
-    totalWords: apiWords?.length || 0,
+    totalWords: apiWords.length,
     learnedCount: learnedWords.length,
     remainingCount: queue.length,
     direction,

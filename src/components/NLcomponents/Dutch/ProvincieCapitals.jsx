@@ -1,12 +1,14 @@
 import VocabularyTrainer from '../../VocabularyTrainer/VocabularyTrainer';
 
 const ProvincieCapitals = () => {
+  const pageName = 'Hoofdsteden en Provincies';
+
   return (
     <>
       <VocabularyTrainer
-        sheetId="1iOxwypQbosb0Jj4l16xrUq84Zg36Lce4XenTrkTPsc0"
+        sheetId="1Xp4ss73_LCsWnTGH2lfTa_jb9vG1mKBd4OrFSKQOcw8"
         sheetName="capitals"
-        name="Hoofdsteden en Provincies"
+        name={pageName}
         from="Provs"
         to="Hfdst"
       />

@@ -10,6 +10,7 @@ import BlocksMenu from 'pages/DutchPages/Blocks/Bloks';
 import LearnNL from 'pages/NL/Taal/Boek1/NLcapitals/CapitalsNL';
 import Menu from 'pages/MenuPage/MenuPage';
 import AmericanWelcomPage from 'pages/Am/StartingPage/HolographicCard';
+import WordList from 'pages/Am/WordListPage/WordListPage';
 
 import Birds from 'pages/AnimalsTopics/BirdsPage/BirdsPage';
 import Wild from 'pages/AnimalsTopics/WildPage/WildPage';
@@ -35,6 +36,7 @@ import Taal from 'pages/DutchPages/Sections/TaalSections';
 import Zo from 'pages/DutchPages/Sections/ZoSections';
 import Soon from 'pages/ComingSoon/ComingSoonPage';
 import LessonPage from 'components/Dutch/LessonPage/LessonPageAutoBg';
+import BirdGame from 'pages/BirdGame/bird-game';
 
 export const App = () => {
   return (
@@ -47,6 +49,7 @@ export const App = () => {
           <Route path="am" element={<Menu />} />
           <Route path="test" element={<TestPage />} />
           <Route path="testtwo" element={<TestPage1 />} />
+          <Route path="wordlist" element={<WordList />} />
 
           <Route path="/" element={<LayoutAnimals />}>
             <Route path="birds" element={<Birds />} />
@@ -69,6 +72,7 @@ export const App = () => {
         <Route path="soon" element={<Soon />} />
         <Route path="menu" element={<AmericanWelcomPage />} />
         <Route path="welcomeam" element={<AmericanWelcomPage />} />
+        <Route path="birdgame" element={<BirdGame />} />
 
         <Route path="/dutch" element={<LayoutDu />}>
           <Route index element={<BlocksMenu />} />
