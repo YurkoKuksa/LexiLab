@@ -1,0 +1,13 @@
+// Centralized exports for all Boek1 page components
+export { default as Deel1 } from './Deel1/Deel1';
+export { default as Deel2 } from './Deel2/Deel2';
+export { default as Deel3 } from './Deel3/Deel3';
+export { default as Deel4 } from './Deel4/Deel4';
+export { default as Deel5 } from './Deel5/Deel5';
+export { default as Deel6 } from './Deel6/Deel6';
+export { default as Deel7 } from './Deel7/Deel7';
+export { default as Deel8 } from './Deel8/Deel8';
+export { default as Deel8Pl } from './Deel8Pl/Deel8Pl';
+export { default as Deel8Animals } from './Deel8Animals/Deel8Animals';
+export { default as Provincies } from './NLcapitals/ProvincieCapitals';
+export { default as Family } from './Family/Family';

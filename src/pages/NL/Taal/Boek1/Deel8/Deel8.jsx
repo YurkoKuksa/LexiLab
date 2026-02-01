@@ -1,13 +1,13 @@
-import VocabularyTrainer from '../../../VocabularyTrainer/VocabularyTrainer';
+import VocabularyTrainer from '../../../../../components/VocabularyTrainer/VocabularyTrainer';
 
-const Deel8_pl = () => {
+const Deel8 = () => {
   const pageName = 'Vrije tijd';
 
   return (
     <>
       <VocabularyTrainer
         sheetId="1Xp4ss73_LCsWnTGH2lfTa_jb9vG1mKBd4OrFSKQOcw8"
-        sheetName="A1deel8_pl"
+        sheetName="A1deel8"
         name={pageName}
         from="nl"
         to="ua"
@@ -16,4 +16,4 @@ const Deel8_pl = () => {
   );
 };
 
-export default Deel8_pl;
+export default Deel8;

@@ -7,7 +7,6 @@ import LayoutAnimals from './components/Layout/LayoutAnimals';
 import Navigator from 'pages/NavigatorPage/NavigatorPage';
 import BlocksMenu from 'pages/DutchPages/Blocks/Bloks';
 
-import LearnNL from 'pages/NL/Taal/Boek1/NLcapitals/CapitalsNL';
 import Menu from 'pages/MenuPage/MenuPage';
 import AmericanWelcomPage from 'pages/Am/StartingPage/HolographicCard';
 import WordList from 'pages/Am/WordListPage/WordListPage';
@@ -44,7 +43,6 @@ export const App = () => {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Navigator />} />
-          <Route path="nl" element={<LearnNL />} />
 
           <Route path="am" element={<Menu />} />
           <Route path="test" element={<TestPage />} />

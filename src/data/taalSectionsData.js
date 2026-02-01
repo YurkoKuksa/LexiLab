@@ -1,10 +1,18 @@
 // src/data/taalSections.js
-// import Deel7 from '../pages/NL/Taal/Boek1/Deel7/Deel7';
-import Provincies from '../components/NLcomponents/Dutch/ProvincieCapitals';
-import Deel7 from '../components/NLcomponents/TaalCompleet/BookA1/Deel7.jsx';
-import Deel8 from '../components/NLcomponents/TaalCompleet/BookA1/Deel8.jsx';
-import Deel8Pl from '../components/NLcomponents/TaalCompleet/BookA1/Deel8_pl';
-import Deel8Animal from '../components/NLcomponents/TaalCompleet/BookA1/Deel8_animals.jsx';
+import {
+  Deel1,
+  Deel2,
+  Deel3,
+  Deel4,
+  Deel5,
+  Deel6,
+  Deel7,
+  Deel8,
+  Deel8Pl,
+  Deel8Animals,
+  Provincies,
+  Family,
+} from '../pages/NL/Taal/Boek1';
 
 export const taalSectionsData = [
   {
@@ -21,6 +29,7 @@ export const taalSectionsData = [
         lessons: 15,
         duration: '15 години',
         icon: '🔤',
+        component: Deel1,
       },
       {
         id: 'school',
@@ -29,6 +38,7 @@ export const taalSectionsData = [
         lessons: 12,
         duration: '3 години',
         icon: '🔢👋',
+        component: Deel2,
       },
       {
         id: 'wonen',
@@ -37,6 +47,7 @@ export const taalSectionsData = [
         lessons: 6,
         duration: '1.5 години',
         icon: '🏠',
+        component: Deel3,
       },
       {
         id: 'eten-en-drinken',
@@ -45,6 +56,7 @@ export const taalSectionsData = [
         lessons: 10,
         duration: '2.5 години',
         icon: '🍎',
+        component: Deel4,
       },
       {
         id: 'docter',
@@ -53,6 +65,7 @@ export const taalSectionsData = [
         lessons: 10,
         duration: '2.5 години',
         icon: '🩺',
+        component: Deel5,
       },
       {
         id: 'kleren',
@@ -61,6 +74,7 @@ export const taalSectionsData = [
         lessons: 10,
         duration: '2.5 години',
         icon: '👕',
+        component: Deel6,
       },
       {
         id: 'reizen',
@@ -90,11 +104,20 @@ export const taalSectionsData = [
     color: 'from-green-400 to-emerald-500',
     blocks: [
       {
+        id: 'family',
+        title: 'Familie',
+        description: 'de familie, het gezin, het kleinkind',
+        lessons: 1,
+        duration: '1 години',
+        icon: '👨‍👩‍👧‍👦',
+        component: Family,
+      },
+      {
         id: 'provincies',
         title: 'Thema 7. De kaart van Nederland',
         description: 'De hoofdsteden van de provincies.',
-        lessons: 2,
-        duration: '2.5 години',
+        lessons: 1,
+        duration: '1 години',
         icon: '🏢',
         component: Provincies,
       },
@@ -105,14 +128,14 @@ export const taalSectionsData = [
         lessons: 1,
         duration: '1 година',
         icon: '🐶',
-        component: Deel8Animal,
+        component: Deel8Animals,
       },
       {
         id: 'deel8-pl',
         title: 'Thema 8',
         description: 'Het meervoud (pluralis)',
         lessons: 1,
-        duration: '4 години',
+        duration: '1 години',
         icon: '👥',
         component: Deel8Pl,
       },

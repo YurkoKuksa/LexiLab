@@ -1,6 +1,6 @@
-import VocabularyTrainer from '../../../VocabularyTrainer/VocabularyTrainer';
+import VocabularyTrainer from '../../../../../components/VocabularyTrainer/VocabularyTrainer';
 
-const Deel8_animals = () => {
+const Deel8Animals = () => {
   const pageName = 'Dieren';
 
   return (
@@ -16,4 +16,4 @@ const Deel8_animals = () => {
   );
 };
 
-export default Deel8_animals;
+export default Deel8Animals;

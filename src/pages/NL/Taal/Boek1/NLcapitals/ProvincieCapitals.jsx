@@ -1,4 +1,4 @@
-import VocabularyTrainer from '../../VocabularyTrainer/VocabularyTrainer';
+import VocabularyTrainer from '../../../../../components/VocabularyTrainer/VocabularyTrainer';
 
 const ProvincieCapitals = () => {
   const pageName = 'Hoofdsteden en Provincies';
