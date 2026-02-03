@@ -1,18 +1,12 @@
-import VocabularyTrainer from '../../../../../components/VocabularyTrainer/VocabularyTrainer';
+import TopicPageDu from '../../../../../components/VocabularyTrainer/TopicPageDu';
 
 const Family = () => {
   const pageName = 'Familie';
+  const sheetId = '1Xp4ss73_LCsWnTGH2lfTa_jb9vG1mKBd4OrFSKQOcw8';
+  const sheetName = 'family';
 
   return (
-    <>
-      <VocabularyTrainer
-        sheetId="1Xp4ss73_LCsWnTGH2lfTa_jb9vG1mKBd4OrFSKQOcw8"
-        sheetName="family"
-        name={pageName}
-        from="nl"
-        to="ua"
-      />
-    </>
+    <TopicPageDu sheetId={sheetId} sheetName={sheetName} pageName={pageName} />
   );
 };
 

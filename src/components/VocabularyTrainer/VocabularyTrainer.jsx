@@ -10,7 +10,7 @@ import {
 } from 'lucide-react';
 import { useVocabularyTrainer } from '../../hooks/useVocabularyTraining';
 
-const VocabularyTrainer = ({ sheetId, sheetName, name, from, to }) => {
+const VocabularyTrainer = ({ sheetId, sheetName, name, from, to, onBack }) => {
   const displayName = name || sheetName;
 
   const [isReversed, setIsReversed] = useState(() => {
@@ -147,6 +147,13 @@ const VocabularyTrainer = ({ sheetId, sheetName, name, from, to }) => {
       className="min-h-screen flex items-start justify-center pt-10 p-4"
     >
       <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full border border-gray-300">
+        <button
+          // Повертаємось до списку слів
+          onClick={onBack}
+          className="text-sm text-slate-500 hover:text-slate-700 underline"
+        >
+          ← Показати список слів
+        </button>
         <div className="mb-6">
           <div className="flex items-center justify-between mb-3">
             <h1 className="text-2xl font-bold text-slate-800">

@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { useGoogleSheetWords } from '../../../hooks/useGoogleSheetWords';
 
-export default function WordList() {
-  const navigate = useNavigate();
-  const { words, loading, error } = useGoogleSheetWords(
-    '1EEbBE2ahdX2zZ-gLUdIX6Xqz1TyI2WPRD59rWADgYOE',
-    'Pets'
-  );
+export default function WordList({ sheetId, sheetName, onGo }) {
+  // const navigate = useNavigate();
+  // const { words, loading, error } = useGoogleSheetWords(
+  //   '1EEbBE2ahdX2zZ-gLUdIX6Xqz1TyI2WPRD59rWADgYOE',
+  //   'Pets'
+  // );
+  const { words, loading, error } = useGoogleSheetWords(sheetId, sheetName);
   const [isVisible, setIsVisible] = useState(false);
 
   // Trigger animation after data loads - ВИПРАВЛЕНО: useEffect замість useState
@@ -17,9 +18,10 @@ export default function WordList() {
     }
   }, [loading, words]);
 
-  const handleGoClick = () => {
-    navigate('/pets');
-  };
+  // Прибираємо
+  // const handleGoClick = () => {
+  //   navigate('/pets');
+  // };
 
   if (loading) {
     return (
@@ -47,12 +49,14 @@ export default function WordList() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-12 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-8 px-4">
       <div className="max-w-4xl mx-auto">
         {/* Go Button */}
         <div className="text-center mb-8">
           <button
-            onClick={handleGoClick}
+            // Додаємо проп  {onGo}
+            // onClick={handleGoClick}
+            onClick={onGo}
             className="bg-gradient-to-r from-[#45818e] to-[#013f4a] text-white font-bold text-lg px-12 py-4 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 hover:from-[#013f4a] hover:to-[#45818e]"
           >
             Go!
@@ -116,7 +120,7 @@ export default function WordList() {
         </div>
       </div>
 
-      <style jsx>{`
+      <style>{`
         @keyframes slideIn {
           from {
             opacity: 0;

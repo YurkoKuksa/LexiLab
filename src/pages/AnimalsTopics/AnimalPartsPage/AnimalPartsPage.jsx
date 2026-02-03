@@ -1,15 +1,13 @@
 // import PageHeader from '../../../components/PageHeader/PageHeader';
 import AnimParts from '../../../components/Animals/AnimalParts/AnimalParts';
-import { MainContainer, Content } from '../AnimalStyled';
+import { MainContainer } from '../AnimalStyled';
 
 const AnimalParts = () => {
   return (
     <MainContainer>
       {/* <PageHeader title="Animal Parts" /> */}
 
-      <Content>
-        <AnimParts />
-      </Content>
+      <AnimParts />
     </MainContainer>
   );
 };

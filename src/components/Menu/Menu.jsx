@@ -20,6 +20,20 @@ const Menu = () => {
     });
   };
 
+  // Автоматично створюємо секцію "Тварини" з Topics
+  // const animalTopics = Object.values(Topics).filter(t => t.variant); // фільтруємо лише ті що мають variant
+  // const menuSections = [
+  //   {
+  //     title: 'Тварини',
+  //     items: animalTopics.map((topic, index) => ({
+  //       to: `/${topic.slug}`,
+  //       label: topic.label,
+  //       variant: topic.variant,
+  //       delay: `${index * 0.2}s`,
+  //     })),
+  //   },
+  // ];
+
   // Конфігурація меню по секціях
   const menuSections = [
     // ✅ СЕКЦІЯ 1: Тварини

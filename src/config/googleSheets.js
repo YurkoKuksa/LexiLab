@@ -6,6 +6,9 @@ export const GOOGLE_SHEETS = {
     to: 'УКР',
     timeLimit: 8,
     requiredCorrectAnswers: 2,
+    sound_from: '',
+    sound_to: '',
+    picture: '',
     emoji: '🐆',
   },
 

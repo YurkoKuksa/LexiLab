@@ -37,6 +37,9 @@ import Soon from 'pages/ComingSoon/ComingSoonPage';
 import LessonPage from 'components/Dutch/LessonPage/LessonPageAutoBg';
 import BirdGame from 'pages/BirdGame/bird-game';
 
+// import TopicPage from './TopicPage';
+// import { Topics } from './config/Topics';
+
 export const App = () => {
   return (
     <>
@@ -50,6 +53,7 @@ export const App = () => {
           <Route path="wordlist" element={<WordList />} />
 
           <Route path="/" element={<LayoutAnimals />}>
+            {/* <Route path="topic/:topicSlug" element={<TopicPage />} /> */}
             <Route path="birds" element={<Birds />} />
             <Route path="wild" element={<Wild />} />
             <Route path="domestic" element={<Domestic />} />
