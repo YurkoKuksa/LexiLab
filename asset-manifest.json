@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/LexiLab/static/css/main.801c6418.css",
-    "main.js": "/LexiLab/static/js/main.6c5cf85d.js",
+    "main.js": "/LexiLab/static/js/main.0c3b59d5.js",
     "static/media/boek.svg": "/LexiLab/static/media/boek.a5004dc5f7906bfa567411e0c97dcc14.svg",
     "static/media/nl.svg": "/LexiLab/static/media/nl.c77665eaaf787caab3bff2e67d22004c.svg",
     "index.html": "/LexiLab/index.html",
     "static/media/double_arrow_up.svg": "/LexiLab/static/media/double_arrow_up.b5d00926162fa68a1db33ef1a5bd0806.svg",
     "main.801c6418.css.map": "/LexiLab/static/css/main.801c6418.css.map",
-    "main.6c5cf85d.js.map": "/LexiLab/static/js/main.6c5cf85d.js.map"
+    "main.0c3b59d5.js.map": "/LexiLab/static/js/main.0c3b59d5.js.map"
   },
   "entrypoints": [
     "static/css/main.801c6418.css",
-    "static/js/main.6c5cf85d.js"
+    "static/js/main.0c3b59d5.js"
   ]
 }
