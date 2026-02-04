@@ -24,6 +24,7 @@ import Sounds from 'pages/AnimalsTopics/AnimalSoundsPage/AnimalSoundsPage';
 import Words from 'pages/AnimalsTopics/AnimalsWords/AnimalsWords';
 import Dinosaurs from 'pages/AnimalsTopics/DinosaursPage/DinosaursPage';
 import Fish from 'pages/AnimalsTopics/FishPage/FishPage';
+import Baby from 'pages/AnimalsTopics/MaleFemaleBaby/MaleFemaleBaby';
 import Group from 'pages/AnimalsTopics/GroupsAnimalsPage/GroupsAnimalsPage';
 import Insects from 'pages/AnimalsTopics/InsectsPage/InsectsPage';
 import Micro from 'pages/AnimalsTopics/MicroorganismsPage/MicroorganismsPage';
@@ -63,6 +64,7 @@ export const App = () => {
             <Route path="words" element={<Words />} />
             <Route path="dinos" element={<Dinosaurs />} />
             <Route path="fish" element={<Fish />} />
+            <Route path="baby" element={<Baby />} />
             <Route path="group" element={<Group />} />
             <Route path="insects" element={<Insects />} />
             <Route path="micro" element={<Micro />} />
